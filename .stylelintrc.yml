@@ -1,0 +1,7 @@
+---
+extends:
+  - stylelint-config-standard-scss
+rules:
+  # FIXME: It is recommended to use @extend with %placeholder but Bootstrap does not support this at the moment
+  # see: https://github.com/twbs/bootstrap/issues/33861
+  scss/at-extend-no-missing-placeholder: null

@@ -1,0 +1,29 @@
+body {
+  margin-left: 1rem;
+  margin-right: 1rem;
+
+  @include media-breakpoint-up(md) {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+
+  @include media-breakpoint-up(xl) {
+    margin-left: 8rem;
+    margin-right: 8rem;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  a {
+    text-decoration: none;
+  }
+}
+
+.toast {
+  z-index: 100;
+}
