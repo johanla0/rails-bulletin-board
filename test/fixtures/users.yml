@@ -9,10 +9,10 @@
 #  updated_at :datetime         not null
 #
 
-one:
-  name: <%= Faker::Name.first_name %>
-  email: <%= Faker::Internet.email %>
+john:
+  name: John
+  email: john@test.com
 
-two:
-  name: <%= Faker::Name.first_name %>
-  email: <%= Faker::Internet.email %>
+jane:
+  name: Jane
+  email: jane@test.com

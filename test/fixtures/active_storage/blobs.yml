@@ -1,0 +1,15 @@
+first_image_blob:
+  id: 1
+  key: <%= SecureRandom.hex(18) %>
+  filename: image_01.png
+  content_type: image/png
+  service_name: 'test_fixtures'
+  byte_size: 100
+
+second_image_blob:
+  id: 2
+  key: <%= SecureRandom.hex(18) %>
+  filename: image_02.png
+  content_type: image/png
+  service_name: 'test_fixtures'
+  byte_size: 100
