@@ -1,0 +1,23 @@
+header.d-flex *{ class: %w[flex-wrap align-items-center \
+  justify-content-center justify-content-md-between \
+  py-3 mb-4 border-bottom] }
+  = link_to root_path do
+    = image_tag 'logo.jpg', height: '30', alt: 'logo'
+  .col-md-6.text-end
+    ul.nav.col-md-auto.justify-content-end
+      / - if user_signed_in?
+      /   li = link_to t('new_post'), new_post_path, class: 'nav-link'
+      /   li = link_to t('my_profile'), current_user, class: 'nav-link'
+      /   li
+      /     = link_to t('log_out'), \
+      /               destroy_user_session_path, \
+      /               data: { \
+      /                 turbo_method: :delete \
+      /               }, \
+      /               class: 'nav-link link-secondary'
+      / - else
+      /   li = link_to t('sign_in'), new_user_session_path, class: 'nav-link me-2'
+      /   li
+      /     = link_to t('sign_up'), \
+      /               new_user_registration_path, \
+      /               class: 'btn btn-outline-primary'

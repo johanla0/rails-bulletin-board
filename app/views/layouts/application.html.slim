@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title = t('title')
+    meta name='viewport' content='width=device-width,initial-scale=1'
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+    = javascript_include_tag 'application', \
+      'data-turbo-track': 'reload', defer: true
+
+  body
+    = render partial: 'layouts/shared/header'
+    = turbo_frame_tag 'flash'
+      = render partial: 'layouts/shared/flash'
+    main
+      == yield

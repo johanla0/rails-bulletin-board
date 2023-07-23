@@ -1,0 +1,7 @@
+div data-turbo-temporary=true
+  - flash.each do |type, msg|
+    .toast *{ class: %w[position-fixed top-0 mt-5 end-0 me-5] << flash_class(type), 'data-controller': 'toast' }
+      .d-flex
+        .toast-body
+          = msg
+        button.btn-close *{ class: %w[me-2 m-auto], type: 'button', 'data-bs-dismiss': 'toast', 'aria-label': 'Close' }

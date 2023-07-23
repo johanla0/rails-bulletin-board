@@ -1,0 +1,6 @@
+en:
+  flash:
+    web:
+      auth:
+        callback:
+          success: Signed in successfully

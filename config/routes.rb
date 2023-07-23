@@ -2,9 +2,17 @@
 
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'welcome#index'
 
-  # root "articles#index"
+  scope module: :web do
+    post 'auth/:provider', to: 'auth#request', as: :auth_request
+    get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
+    get '/login', to: 'auth#new'
 
-  post 'auth/:provider', to: 'auth#request', as: :auth_request
-  get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
+    resources :users, only: :show
+
+    namespace :admin do
+      root 'welcome#index'
+    end
+  end
 end
