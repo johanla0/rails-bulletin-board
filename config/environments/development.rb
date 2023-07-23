@@ -5,7 +5,7 @@ require 'active_support/core_ext/integer/time'
 Rails.application.configure do
   config.after_initialize do
     Bullet.enable        = true
-    Bullet.alert         = true
+    Bullet.alert         = false
     Bullet.bullet_logger = true
     Bullet.console       = true
     Bullet.rails_logger  = true
@@ -73,7 +73,7 @@ Rails.application.configure do
   # config.assets.enabled = false
 
   # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
+  config.i18n.raise_on_missing_translations = true
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true

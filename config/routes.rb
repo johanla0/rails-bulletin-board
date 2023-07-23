@@ -2,14 +2,15 @@
 
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root 'welcome#index'
+  root 'web/bulletins#index'
 
   scope module: :web do
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
-    get '/login', to: 'auth#new'
+    delete '/logout', to: 'auth#destroy'
 
     resources :users, only: :show
+    resources :bulletins, except: :index
 
     namespace :admin do
       root 'welcome#index'

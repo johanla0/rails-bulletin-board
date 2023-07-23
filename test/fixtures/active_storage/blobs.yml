@@ -1,13 +1,2 @@
-first_image_blob:
-  key: <%= SecureRandom.hex(18) %>
-  filename: image_01.png
-  content_type: image/png
-  service_name: local
-  byte_size: 100
-
-second_image_blob:
-  key: <%= SecureRandom.hex(18) %>
-  filename: image_02.png
-  content_type: image/png
-  service_name: local
-  byte_size: 100
+first_image_blob: <%= ActiveStorage::FixtureSet.blob filename: 'image_01.png', service_name: 'local' %>
+second_image_blob: <%= ActiveStorage::FixtureSet.blob filename: 'image_02.png', service_name: 'local' %>

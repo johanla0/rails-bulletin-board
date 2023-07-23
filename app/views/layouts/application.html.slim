@@ -13,5 +13,5 @@ html
     = render partial: 'layouts/shared/header'
     = turbo_frame_tag 'flash'
       = render partial: 'layouts/shared/flash'
-    main
+    main.border.rounded-3.p-4.shadow.bg-white
       == yield

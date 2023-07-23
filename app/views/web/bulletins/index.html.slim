@@ -1,0 +1,7 @@
+h1 = t('.title')
+hr
+
+#bulletins
+  .row.row-cols-4.g-3
+    - @bulletins.each do |bulletin|
+      == render bulletin

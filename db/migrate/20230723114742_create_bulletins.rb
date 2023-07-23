@@ -8,6 +8,5 @@ class CreateBulletins < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_reference :bulletins, :image, null: false, foreign_key: { to_table: :active_storage_blobs }
   end
 end
