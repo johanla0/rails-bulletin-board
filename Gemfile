@@ -12,7 +12,6 @@ gem 'active_storage_validations'
 gem 'aws-sdk-s3'
 gem 'cssbundling-rails'
 gem 'data_migrate'
-gem 'dotenv-rails'
 gem 'file_validators'
 gem 'jsbundling-rails'
 gem 'omniauth-github'
@@ -25,6 +24,7 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
+gem 'term-ansicolor'
 gem 'turbo-rails'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
@@ -51,6 +51,7 @@ gem 'image_processing', '~> 1.2'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails'
   gem 'faker'
   gem 'sqlite3', '~> 1.4'
 end

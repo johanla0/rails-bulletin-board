@@ -14,6 +14,10 @@ TBU
 
 `make branch feature_name`
 
+#### Bundle js and watch the stimulus controllers directory
+
+`make esbuild`
+
 #### Check styles (slim, js, scss) and run tests (models, controllers) before pushing
 
 `make check`

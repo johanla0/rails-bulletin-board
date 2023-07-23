@@ -6,7 +6,7 @@ const currentDir = path.resolve(__dirname);
 const isWatch = process.argv.includes('--watch');
 
 const buildOptions = {
-  entryPoints: [path.resolve(currentDir, 'app.js')],
+  entryPoints: [path.resolve(currentDir, 'application.js')],
   bundle: true,
   sourcemap: true,
   outdir: 'app/assets/builds',

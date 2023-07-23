@@ -6,6 +6,11 @@ ci-setup:
 	yarn install --cache-folder .yarn-cache
 	bin/rails assets:precompile
 check: lint test
+env:
+	[ -f .env.example ] && (cp .env.example .env) || (touch .env)
+	echo '.env' >> .gitignore
+esbuild:
+	yarn build --watch
 install:
 	bundle install
 	bundle exec bin/rails db:create
@@ -33,5 +38,4 @@ style!:
 	bundle exec rubocop -A
 stylelint:
 	npx stylelint "**/*.scss" "!**/vendor/**"
-webpack:
-	yarn build --watch
+webpack: esbuild

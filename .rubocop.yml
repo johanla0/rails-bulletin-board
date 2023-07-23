@@ -42,3 +42,5 @@ Rails/DynamicFindBy:
   Enabled: true
 Rails/InverseOf:
   Enabled: false
+Style/NegatedIf:
+  Enabled: false
