@@ -17,7 +17,8 @@ class Web::AuthController < Web::ApplicationController
     end
   end
 
-  def new
-    render :new
+  def destroy
+    reset_session
+    f :success, redirect: root_path, status: :see_other
   end
 end

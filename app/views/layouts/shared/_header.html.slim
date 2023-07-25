@@ -7,19 +7,26 @@ header.d-flex *{ class: %w[flex-wrap align-items-center \
     ul.nav.col-md-auto.justify-content-between
       div
         li = link_to t('home'), root_path, class: 'nav-link'
-      div
+      .d-flex
         - if user_signed_in?
-          li = link_to t('new_bulletin'), new_bulletin_path, class: 'nav-link'
-          li = link_to t('my_profile'), current_user, class: 'nav-link'
+          li
+            = link_to new_bulletin_path, class: 'nav-link' do
+              i.bi.bi-file-earmark-plus.me-2
+              = t('new_bulletin')
+          li
+            = link_to current_user, class: 'nav-link' do
+              i.bi.bi-person-circle.me-2
+              = t('my_profile')
           li
             = link_to t('sign_out'), \
-                      logout_path, \
+                      auth_logout_path, \
                       data: { \
                         turbo_method: :delete \
                       }, \
                       class: 'nav-link link-secondary'
         - else
           li
-            = link_to '#', class: 'nav-link' do
-              i.bi.bi-github.me-2
-              = t('sign_in')
+            = form_tag auth_request_path('github'), method: 'post', data: { turbo: false } do
+              = button_tag type: 'submit', class: 'nav-link' do
+                i.bi.bi-github.me-2
+                = t('sign_in')

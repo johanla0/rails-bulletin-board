@@ -4,3 +4,5 @@ en:
       auth:
         callback:
           success: Signed in successfully
+        destroy:
+          success: Signed out successfully
