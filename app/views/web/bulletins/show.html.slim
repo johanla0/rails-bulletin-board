@@ -1,10 +1,16 @@
-p style="color: green" = notice
-
-== render @bulletin
+div id="#{dom_id @bulletin}"
+  article
+    h1.mb-3 = @bulletin.title
+    hr
+    div data-controller='lightbox' data-lightbox-options-value='{"download": false, "share": false}'
+      = link_to @bulletin.image do
+        = image_tag @bulletin.image, width: '300'
+    hr
+    p = @bulletin.description
 
 div
-  => link_to "Edit this bulletin", edit_bulletin_path(@bulletin)
+  => link_to t('edit'), edit_bulletin_path(@bulletin)
   '|
-  =< link_to "Back to bulletins", bulletins_path
+  =< link_to t('back_to_bulletins'), root_path
 
-  = button_to "Destroy this bulletin", @bulletin, method: :delete
+  = link_to t('delete'), @bulletin, data: { turbo_method: :delete }, class: 'text-danger'

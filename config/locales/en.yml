@@ -30,12 +30,19 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  back_to_bulletins: Back to all bulletins
+  cancel: Cancel
+  delete: Delete
+  edit: Edit
   home: Home
+  new_bulletin: New bulletin
+  ok: Ok
   sign_in: Sign in
   sign_out: Sign out
-  new_bulletin: New bulletin
   title: Bulletin board
   web:
     bulletins:
+      edit:
+        editing_bulletin: Editing bulletin
       index:
         title: Bulletin board

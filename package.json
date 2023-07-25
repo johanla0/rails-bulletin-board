@@ -15,7 +15,8 @@
     "nodemon": "^3.0.1",
     "postcss": "^8.4.26",
     "postcss-cli": "^10.1.0",
-    "sass": "^1.64.0"
+    "sass": "^1.64.0",
+    "stimulus-lightbox": "^3.2.0"
   },
   "devDependencies": {
     "bootstrap-sass": "^3.4.3",

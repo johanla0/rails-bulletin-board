@@ -23,9 +23,12 @@
 #  user_id      (user_id => users.id)
 #
 class Bulletin < ApplicationRecord
+  IMAGE_CONTENT_TYPES = ['image/png', 'image/jpg', 'image/jpeg'].freeze
+
+  validates :image, content_type: IMAGE_CONTENT_TYPES,
+                    size: { less_than_or_equal_to: 5.megabytes }
+
   belongs_to :user
   belongs_to :category
   has_one_attached :image
-
-  validates :image, presence: true
 end

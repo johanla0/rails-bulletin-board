@@ -1,10 +1,10 @@
-h1 Editing bulletin
+h1 = t('.editing_bulletin')
 
-== render "form", bulletin: @bulletin
+== render partial: 'form', bulletin: @bulletin
 
 br
 
 div
-  => link_to "Show this bulletin", @bulletin
+  => link_to t('cancel'), @bulletin
   '|
-  =< link_to "Back to bulletins", bulletins_path
+  =< link_to t('back_to_bulletins'), root_path

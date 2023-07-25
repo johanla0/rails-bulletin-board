@@ -24,6 +24,8 @@ lint:
 	make stylelint
 logs:
 	tail -f log/development.log
+new:
+	rails new $(ARGS) -j esbuild
 eslint:
 	npx eslint app/javascript --ext .js
 eslint!:
