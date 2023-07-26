@@ -22,7 +22,7 @@ class Web::BulletinsController < Web::ApplicationController
     @bulletin = Bulletin.new(bulletin_params)
 
     if @bulletin.save
-      redirect_to bulletin_url(@bulletin), notice: 'Bulletin was successfully created.'
+      f :success, redirect: bulletin_path(@bulletin)
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class Web::BulletinsController < Web::ApplicationController
     @bulletin = Bulletin.find(params[:id])
 
     if @bulletin.update(bulletin_params)
-      redirect_to bulletin_url(@bulletin), notice: 'Bulletin was successfully updated.'
+      f :success, redirect: bulletin_path(@bulletin)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class Web::BulletinsController < Web::ApplicationController
     @bulletin = Bulletin.find(params[:id])
     @bulletin.destroy
 
-    redirect_to bulletins_url, notice: 'Bulletin was successfully destroyed.'
+    f :success, redirect: root_path
   end
 
   private
