@@ -28,6 +28,9 @@ gem 'stimulus-rails'
 gem 'term-ansicolor'
 gem 'turbo-rails'
 
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', require: false
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
@@ -60,8 +63,6 @@ end
 group :development do
   gem 'annotate', '~> 3.2'
   gem 'bullet', '~> 7.0'
-  # Reduces boot times through caching; required in config/boot.rb
-  gem 'bootsnap', require: false
 
   gem 'i18n-debug'
 
