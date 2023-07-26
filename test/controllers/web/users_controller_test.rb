@@ -4,7 +4,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
+    @user = users(:john)
   end
   test '#show' do
     get user_path(@user)
