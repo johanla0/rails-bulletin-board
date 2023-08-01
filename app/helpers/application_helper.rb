@@ -2,4 +2,6 @@
 
 module ApplicationHelper
   include ViewHelper
+  include UsersHelper
+  include CategoriesHelper
 end

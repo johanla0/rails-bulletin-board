@@ -1,10 +1,8 @@
 h1 = t('.editing_bulletin')
 
-== render partial: 'form', bulletin: @bulletin
+== render partial: 'form', locals: { bulletin: @bulletin, url: bulletin_path(@bulletin) }
 
 br
 
 div
-  => link_to t('cancel'), @bulletin
-  '|
-  =< link_to t('back_to_bulletins'), root_path
+  => link_to t('cancel'), bulletin_path(@bulletin)

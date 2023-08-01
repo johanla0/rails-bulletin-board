@@ -1,4 +1,4 @@
-body {
+main {
   margin-left: 1rem;
   margin-right: 1rem;
 
@@ -22,6 +22,11 @@ h6 {
   a {
     text-decoration: none;
   }
+}
+
+footer {
+  min-height: calc(var(--bs-body-font-size) * 2);
+  line-height: calc(var(--bs-body-font-size) * 2);
 }
 
 .toast {
@@ -50,4 +55,11 @@ h6 {
 
 .x-object-fit-none {
   object-fit: none;
+}
+
+.dropdown-item {
+  &:hover,
+  &:focus {
+    background-color: tint-color($primary, 80%);
+  }
 }

@@ -11,30 +11,36 @@ class Web::BulletinsController < Web::ApplicationController
   end
 
   def new
-    @bulletin = Bulletin.new
+    @bulletin = BulletinForm.new
   end
 
   def edit
-    @bulletin = Bulletin.find(params[:id])
+    bulletin = Bulletin.find(params[:id])
+    @bulletin = bulletin.becomes(BulletinForm)
   end
 
   def create
-    @bulletin = Bulletin.new(bulletin_params)
+    @bulletin = BulletinForm.new(params[:bulletin_form])
+    @bulletin.user = current_user
 
     if @bulletin.save
       f :success, redirect: bulletin_path(@bulletin)
     else
-      render :new, status: :unprocessable_entity
+      f :error, now: true, render: :new, status: :unprocessable_entity
     end
   end
 
   def update
-    @bulletin = Bulletin.find(params[:id])
+    bulletin = Bulletin.find(params[:id])
+    @bulletin = bulletin.becomes(BulletinForm)
 
-    if @bulletin.update(bulletin_params)
+    @bulletin.assign_attributes(params[:bulletin_form])
+
+    if @bulletin.valid?
+      @bulletin.save!
       f :success, redirect: bulletin_path(@bulletin)
     else
-      render :edit, status: :unprocessable_entity
+      f :error, now: true, render: :edit, status: :unprocessable_entity
     end
   end
 
@@ -43,11 +49,5 @@ class Web::BulletinsController < Web::ApplicationController
     @bulletin.destroy
 
     f :success, redirect: root_path
-  end
-
-  private
-
-  def bulletin_params
-    params.fetch(:bulletin, {})
   end
 end

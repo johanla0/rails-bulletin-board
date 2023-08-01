@@ -12,4 +12,6 @@
 #
 class Category < ApplicationRecord
   has_many :bulletins, dependent: :nullify
+
+  include CategoryRepository
 end

@@ -1,5 +1,5 @@
 doctype html
-html
+html.h-100
   head
     title = t('title')
     meta name='viewport' content='width=device-width,initial-scale=1'
@@ -9,9 +9,10 @@ html
     = javascript_include_tag 'application', \
       'data-turbo-track': 'reload', defer: true
 
-  body
+  body.d-flex.flex-column.h-100
     = render partial: 'layouts/shared/header'
     = turbo_frame_tag 'flash'
       = render partial: 'layouts/shared/flash'
     main.border.rounded-3.p-4.shadow.bg-white
       == yield
+    = render partial: 'layouts/shared/footer'

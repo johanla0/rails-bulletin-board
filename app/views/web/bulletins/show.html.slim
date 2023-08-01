@@ -1,16 +1,36 @@
+nav aria-label='breadcrumb'
+  ol.breadcrumb
+    li.breadcrumb-item
+      = link_to t('all_bulletins'), root_path
+    li.breadcrumb-item
+      = link_to t(@bulletin.category.slug, scope: :'bulletins.slug'), @bulletin.category
+    li.breadcrumb-item.active aria-current='page'
+      = @bulletin.title
+
 div id="#{dom_id @bulletin}"
   article
-    h1.mb-3 = @bulletin.title
-    hr
-    div data-controller='lightbox' data-lightbox-options-value='{"download": false, "share": false}'
-      = link_to @bulletin.image do
-        = image_tag @bulletin.image, width: '300'
-    hr
-    p = @bulletin.description
+    .row
+      .col-md-9
+        h2.mb-3 = @bulletin.title
+        hr
+        div data-controller='lightbox' data-lightbox-options-value='{"download": false, "share": false}'
+          = link_to @bulletin.image do
+            = image_tag @bulletin.image, class: 'img-thumbnail mb-2', width: '200'
+        hr
+        p = @bulletin.description
+      .col-md-3
+        .card.p-3.h-100.justify-content-between
+          .d-flex
+            = avatar_for @bulletin.user, width: '50'
+            .ms-3
+              = link_to @bulletin.user, class: 'text-decoration-none' do
+                = @bulletin.user.name
+              .small = @bulletin.user.email
+          .text-center.mt-3
+            = link_to @bulletin.user, class: 'text-decoration-none' do
+              = t('.see_other_bulletins')
 
 div
   => link_to t('edit'), edit_bulletin_path(@bulletin)
   '|
-  =< link_to t('back_to_bulletins'), root_path
-
   = link_to t('delete'), @bulletin, data: { turbo_method: :delete }, class: 'text-danger'

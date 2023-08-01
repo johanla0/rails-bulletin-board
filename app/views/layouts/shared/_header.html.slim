@@ -1,12 +1,19 @@
-header.d-flex *{ class: %w[flex-wrap align-items-center \
+header.px-3.d-flex *{ class: %w[flex-wrap align-items-center \
   justify-content-center justify-content-md-between \
   py-3 mb-4 border-bottom] }
   = link_to root_path do
     = image_tag 'logo.jpg', height: '30', alt: 'logo'
   .col
     ul.nav.col-md-auto.justify-content-between
-      div
+      .d-flex
         li = link_to t('home'), root_path, class: 'nav-link'
+        li
+          = link_to '#', class: 'nav-link', data: { 'bs-toggle': 'dropdown' }, aria: { haspopup: true, expanded: false } do
+            = t('categories')
+          .dropdown-menu
+            - all_categories.each do |category|
+              = link_to t(category.slug, scope: :'bulletins.slug'), category_path(category), class: 'dropdown-item'
+
       .d-flex
         - if user_signed_in?
           li
@@ -14,9 +21,9 @@ header.d-flex *{ class: %w[flex-wrap align-items-center \
               i.bi.bi-file-earmark-plus.me-2
               = t('new_bulletin')
           li
-            = link_to current_user, class: 'nav-link' do
-              i.bi.bi-person-circle.me-2
-              = t('my_profile')
+            = link_to current_user, class: 'nav-link d-flex align-items-center' do
+              = avatar_for current_user, height: '25'
+              .ms-2 = t('my_profile')
           li
             = link_to t('sign_out'), \
                       auth_logout_path, \

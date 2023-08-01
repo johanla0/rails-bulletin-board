@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
     resources :users, only: :show
     resources :bulletins, except: :index
+    resources :categories, only: :show
 
     namespace :admin do
       root 'welcome#index'

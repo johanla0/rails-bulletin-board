@@ -3,7 +3,7 @@
 class BulletinForm < Bulletin
   include ActiveFormModel
 
-  permit :title, :description, :image
+  permit :title, :description, :image, :category_id
 
   validates :title, :description, :image, presence: true
   validates_length_of :title, maximum: 50

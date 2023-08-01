@@ -30,8 +30,16 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  back_to_bulletins: Back to all bulletins
+  all_bulletins: All bulletins
+  bulletin_board: Bulletin board © %{year}
+  bulletins:
+    slug:
+      general: General
+      other: Other
+  bulletins_blank: No bulletins found
   cancel: Cancel
+  categories: Categories
+  create_new_bulletin: Create New Bulletin
   delete: Delete
   edit: Edit
   home: Home
@@ -47,3 +55,8 @@ en:
         editing_bulletin: Editing bulletin
       index:
         title: Bulletin board
+      show:
+        see_other_bulletins: See Other Bulletins
+    users:
+      show:
+        users_bulletins: "%{name}'s bulletins"

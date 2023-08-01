@@ -1,3 +1,27 @@
-h1 Users#show
-p User name: @user.name
-p User email: @user.email
+nav aria-label='breadcrumb'
+  ol.breadcrumb
+    li.breadcrumb-item
+      = link_to t('all_bulletins'), root_path
+    li.breadcrumb-item.active aria-current='page'
+      = t('.users_bulletins', name: @user.name)
+
+div id="#{dom_id(@user)}"
+  .row.gutters-sm
+    .col-md-4
+      .card.p-4
+        .d-flex.flex-column.align-items-center.text-center
+          = avatar_for @user
+          h2 = @user.name
+          .small = @user.email
+    .col-md-8
+      - if @user.bulletins.present?
+        - @user.bulletins.each do |bulletin|
+          = render partial: 'web/bulletins/shared/bulletin_wide', locals: { bulletin: }
+      - else
+        p.text-center
+          i.bi.bi-layout-text-sidebar.fs-1.d-block
+          = t('bulletins_blank')
+          - if @user == current_user
+            = link_to new_bulletin_path, class: 'd-block mt-3' do
+              i.bi.bi-file-earmark-plus.me-2
+              = t('create_new_bulletin')

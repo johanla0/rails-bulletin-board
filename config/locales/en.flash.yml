@@ -6,3 +6,10 @@ en:
           success: Signed in successfully
         destroy:
           success: Signed out successfully
+      bulletins:
+        create:
+          error: Cannot create new bulletin
+          success: Bulletin has been successfully added
+        update:
+          error: Cannot create new bulletin
+          success: Bulletin has been successfully updated

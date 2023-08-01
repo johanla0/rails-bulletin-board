@@ -1,4 +1,5 @@
-= simple_form_for(@bulletin) do |f|
+= simple_form_for @bulletin, url: do |f|
+  = f.association :category, include_blank: false
   = f.input :title
   = f.input :description, as: :text
   = f.input :image, as: :file
