@@ -12,7 +12,9 @@ div id="#{dom_id(@user)}"
         .d-flex.flex-column.align-items-center.text-center
           = avatar_for @user
           h2 = @user.name
-          .small = @user.email
+          p.small = @user.email
+          p.small.mb-0.text-warning.fw-bold
+            = t('admin') if @user.admin
     .col-md-8
       - if @user.bulletins.present?
         - @user.bulletins.each do |bulletin|

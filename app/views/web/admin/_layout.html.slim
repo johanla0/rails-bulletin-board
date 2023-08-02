@@ -1,0 +1,7 @@
+ul.nav.nav-tabs
+  = menu_item t('under_moderation'), admin_path
+  = menu_item t('all_bulletins'), admin_bulletins_path
+  = menu_item t('all_categories'), admin_categories_path
+
+.tab-content.mt-3
+  == yield

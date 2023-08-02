@@ -6,6 +6,7 @@
 #
 #  id          :integer          not null, primary key
 #  description :text             not null
+#  state       :string
 #  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -23,6 +24,8 @@
 #  user_id      (user_id => users.id)
 #
 class Bulletin < ApplicationRecord
+  include AASM
+
   IMAGE_CONTENT_TYPES = ['image/png', 'image/jpg', 'image/jpeg'].freeze
 
   validates :image, content_type: IMAGE_CONTENT_TYPES,
@@ -31,4 +34,29 @@ class Bulletin < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_one_attached :image
+
+  aasm column: 'state' do
+    state :draft, initial: true
+    state :under_moderation, :published, :rejected, :archived
+
+    event :to_moderate do
+      transitions from: :draft, to: :under_moderation
+    end
+
+    event :reject do
+      transitions from: :under_moderation, to: :rejected
+    end
+
+    event :publish do
+      transitions from: :under_moderation, to: :published
+    end
+
+    event :archive do
+      transitions from: %i[draft under_moderation published rejected], to: :archived
+    end
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[category_id created_at description title updated_at]
+  end
 end

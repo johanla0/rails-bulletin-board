@@ -8,6 +8,7 @@ ruby '3.2.2'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
 
+gem 'aasm'
 gem 'active_form_model'
 gem 'active_storage_validations'
 gem 'aws-sdk-s3'
@@ -19,6 +20,7 @@ gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'puma', '~> 5.0'
 gem 'pundit', '~> 2.3', '>= 2.3.1'
+gem 'ransack'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'simple_form'
@@ -86,10 +88,10 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
+  # gem 'capybara'
+  # gem 'selenium-webdriver'
+  # gem 'webdrivers'
   gem 'minitest-power_assert'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
 end
 
 group :production do

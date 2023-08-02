@@ -14,4 +14,8 @@ class Category < ApplicationRecord
   has_many :bulletins, dependent: :nullify
 
   include CategoryRepository
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[id name slug]
+  end
 end

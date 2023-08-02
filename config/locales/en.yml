@@ -30,7 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  actions: Actions
+  admin: Admin
   all_bulletins: All bulletins
+  all_categories: All categories
+  archive: Archive
   bulletin_board: Bulletin board © %{year}
   bulletins:
     slug:
@@ -40,16 +44,38 @@ en:
   cancel: Cancel
   categories: Categories
   create_new_bulletin: Create New Bulletin
+  created_at: Created at
   delete: Delete
   edit: Edit
+  'false': 'no'
   home: Home
+  manage: Manage bulletin board
   my_profile: My profile
+  name: Title
   new_bulletin: New bulletin
   ok: Ok
+  publish: Publish
+  reject: Reject
+  remove: Remove
   sign_in: Sign in
   sign_out: Sign out
+  show: Show
   title: Bulletin board
+  'true': 'yes'
+  under_moderation: Bulletins on review
   web:
+    admin:
+      bulletins:
+        index:
+          title: All bulletins
+      layout:
+        add_category: Add category
+        all_bulletins: All bulletins
+      categories:
+        edit:
+          editing_category: Editing category
+        new:
+          new_category: New category
     bulletins:
       edit:
         editing_bulletin: Editing bulletin

@@ -23,7 +23,8 @@ class Web::BulletinsController < Web::ApplicationController
     @bulletin = BulletinForm.new(params[:bulletin_form])
     @bulletin.user = current_user
 
-    if @bulletin.save
+    if @bulletin.valid?
+      @bulletin.save!
       f :success, redirect: bulletin_path(@bulletin)
     else
       f :error, now: true, render: :new, status: :unprocessable_entity

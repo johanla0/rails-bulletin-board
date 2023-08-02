@@ -12,17 +12,17 @@ header.px-3.d-flex *{ class: %w[flex-wrap align-items-center \
             = t('categories')
           .dropdown-menu
             - all_categories.each do |category|
-              = link_to t(category.slug, scope: :'bulletins.slug'), category_path(category), class: 'dropdown-item'
-
-      .d-flex
-        - if user_signed_in?
+              = link_to t(category.slug, scope: :'bulletins.slug', default: category.name), category_path(category), class: 'dropdown-item'
+      - if user_signed_in?
+        - if current_user.admin?
+          == render partial: 'layouts/shared/menu_admin'
+        - else
+          == render partial: 'layouts/shared/menu_user'
+        .d-flex
           li
-            = link_to new_bulletin_path, class: 'nav-link' do
-              i.bi.bi-file-earmark-plus.me-2
-              = t('new_bulletin')
-          li
-            = link_to current_user, class: 'nav-link d-flex align-items-center' do
-              = avatar_for current_user, height: '25'
+            = link_to profile_path, class: 'nav-link d-flex' do
+              .avatar-container
+                = avatar_for current_user, height: '25'
               .ms-2 = t('my_profile')
           li
             = link_to t('sign_out'), \
@@ -31,9 +31,9 @@ header.px-3.d-flex *{ class: %w[flex-wrap align-items-center \
                         turbo_method: :delete \
                       }, \
                       class: 'nav-link link-secondary'
-        - else
-          li
-            = form_tag auth_request_path('github'), method: 'post', data: { turbo: false } do
-              = button_tag type: 'submit', class: 'nav-link' do
-                i.bi.bi-github.me-2
-                = t('sign_in')
+      - else
+        li
+          = form_tag auth_request_path('github'), method: 'post', data: { turbo: false } do
+            = button_tag type: 'submit', class: 'nav-link' do
+              i.bi.bi-github.me-2
+              = t('sign_in')

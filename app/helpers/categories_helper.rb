@@ -2,6 +2,6 @@
 
 module CategoriesHelper
   def all_categories
-    Category.sorted_by_slug_asc
+    Category.sort_by_slug_asc
   end
 end

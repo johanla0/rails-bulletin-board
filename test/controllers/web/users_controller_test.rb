@@ -7,7 +7,7 @@ class Web::UsersControllerTest < ActionDispatch::IntegrationTest
     @user = users(:john)
   end
   test '#show' do
-    get user_path(@user)
+    get profile_path
     assert_response :success
   end
 end

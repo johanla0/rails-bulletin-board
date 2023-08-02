@@ -2,6 +2,6 @@
 
 class Web::UsersController < Web::ApplicationController
   def show
-    @user = User.find params[:id]
+    @user = current_user
   end
 end

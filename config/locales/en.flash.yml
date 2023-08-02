@@ -11,5 +11,13 @@ en:
           error: Cannot create new bulletin
           success: Bulletin has been successfully added
         update:
-          error: Cannot create new bulletin
+          error: Cannot update bulletin
           success: Bulletin has been successfully updated
+      admin:
+        categories:
+          create:
+            error: Cannot create new category
+            success: Category has been successfully added
+          update:
+            error: Cannot update category
+            success: Category has been successfully updated

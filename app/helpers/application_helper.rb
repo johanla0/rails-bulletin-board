@@ -4,4 +4,5 @@ module ApplicationHelper
   include ViewHelper
   include UsersHelper
   include CategoriesHelper
+  include ModelHelper
 end

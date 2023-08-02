@@ -63,3 +63,13 @@ footer {
     background-color: tint-color($primary, 80%);
   }
 }
+
+.avatar-container {
+  display: block;
+  height: 25px;
+  width: 25px;
+
+  img {
+    vertical-align: inherit;
+  }
+}

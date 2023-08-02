@@ -14,4 +14,17 @@ module ViewHelper
   def flash_class(flash_name)
     FLASH_CLASSES[flash_name.to_sym]
   end
+
+  def active?(path)
+    without_query_params_path = path.split('?').first
+    'active' if without_query_params_path == request.path
+  end
+
+  def menu_item(name = nil, path = '#', *args)
+    args_options = args.extract_options!
+    options = { class: "nav-link mb-0 #{active?(path)}" }.merge args_options
+    tag.li(class: 'nav-item me-3') do
+      link_to name, path, options
+    end
+  end
 end

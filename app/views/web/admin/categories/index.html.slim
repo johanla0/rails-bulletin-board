@@ -1,0 +1,22 @@
+h1.mb-4 = t('manage')
+= render layout: 'web/admin/layout' do
+  p.ms-2.mb-2
+    = link_to new_admin_category_path do
+      i.bi.bi-plus.me-1
+      = t('.add_category')
+  table.table
+    thead
+      tr
+        th = sort_link(@q, :id)
+        th = sort_link(@q, :name)
+        th = sort_link(@q, :slug)
+        th = t('actions')
+    tbody
+      - @categories.each do |category|
+        tr
+          td = category.id
+          td = category.name
+          td = category.slug
+          td
+            = link_to t('edit'), edit_admin_category_path(category), class: 'me-2'
+            = link_to t('remove'), admin_category_path(category), class: 'link-danger', data: { turbo_method: :delete }
