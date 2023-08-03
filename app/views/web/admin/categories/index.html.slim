@@ -10,13 +10,16 @@ h1.mb-4 = t('manage')
         th = sort_link(@q, :id)
         th = sort_link(@q, :name)
         th = sort_link(@q, :slug)
+        th = sort_link(@q, :bulletins_count)
         th = t('actions')
     tbody
       - @categories.each do |category|
         tr
           td = category.id
-          td = category.name
+          td = link_to category.name, category_path(category)
           td = category.slug
+          td = category.bulletins_count
           td
             = link_to t('edit'), edit_admin_category_path(category), class: 'me-2'
-            = link_to t('remove'), admin_category_path(category), class: 'link-danger', data: { turbo_method: :delete }
+            span.text-secondary
+              = link_to_if category.bulletins_count.zero?, t('remove'), admin_category_path(category), class: 'link-danger', data: { turbo_method: :delete }

@@ -12,7 +12,7 @@ header.px-3.d-flex *{ class: %w[flex-wrap align-items-center \
             = t('categories')
           .dropdown-menu
             - all_categories.each do |category|
-              = link_to t(category.slug, scope: :'bulletins.slug', default: category.name), category_path(category), class: 'dropdown-item'
+              = link_to category.title, category_path(category), class: 'dropdown-item'
       - if user_signed_in?
         - if current_user.admin?
           == render partial: 'layouts/shared/menu_admin'

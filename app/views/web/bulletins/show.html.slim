@@ -1,32 +1,33 @@
-nav aria-label='breadcrumb'
-  ol.breadcrumb
-    li.breadcrumb-item
-      = link_to t('all_bulletins'), root_path
-    li.breadcrumb-item
-      = link_to t(@bulletin.category.slug, scope: :'bulletins.slug', default: category.name), @bulletin.category
-    li.breadcrumb-item.active aria-current='page'
-      = @bulletin.title
+.position-relative
+  nav aria-label='breadcrumb'
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to t('all_bulletins'), root_path
+      li.breadcrumb-item
+        = link_to @bulletin.category.decorate.title, @bulletin.category
+      li.breadcrumb-item.active aria-current='page'
+        = @bulletin.title
 
-div id="#{dom_id @bulletin}"
-  article
-    .row
-      .col-md-9
-        h2.mb-3 = @bulletin.title
-        hr
-        div data-controller='lightbox' data-lightbox-options-value='{"download": false, "share": false}'
-          = link_to @bulletin.image do
-            = image_tag @bulletin.image, class: 'img-thumbnail mb-2', width: '200'
-        hr
-        p = @bulletin.description
-      .col-md-3
-        .card.p-3.h-100.justify-content-between
-          .d-flex
-            = avatar_for @bulletin.user, width: '50'
-            .ms-3
-              = @bulletin.user.name
-              .small = @bulletin.user.email
+  div id="#{dom_id @bulletin}"
+    article
+      .row
+        .col-md-9
+          h2.mb-3 = @bulletin.title
+          hr
+          div data-controller='lightbox' data-lightbox-options-value='{"download": false, "share": false}'
+            = link_to @bulletin.image do
+              = image_tag @bulletin.image, class: 'img-thumbnail mb-2', width: '200'
+          hr
+          p = @bulletin.description
+        .col-md-3
+          .card.p-3.position-absolute.top-0.end-0
+            .d-flex
+              = avatar_for @bulletin.user, width: '50'
+              .ms-3
+                = @bulletin.user.name
+                .small = @bulletin.user.email
 
-div
-  => link_to t('edit'), edit_bulletin_path(@bulletin)
-  '|
-  = link_to t('delete'), @bulletin, data: { turbo_method: :delete }, class: 'text-danger'
+  div
+    => link_to t('edit'), edit_bulletin_path(@bulletin)
+    '|
+    = link_to t('delete'), @bulletin, data: { turbo_method: :delete }, class: 'text-danger'

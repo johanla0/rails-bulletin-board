@@ -3,7 +3,7 @@ nav aria-label='breadcrumb'
     li.breadcrumb-item
       = link_to t('all_bulletins'), root_path
     li.breadcrumb-item.active aria-current='page'
-      = t(@category.slug, scope: :'bulletins.slug', default: category.name)
+      = @category.title
 
 #bulletins
   - @category.bulletins.each do |bulletin|
