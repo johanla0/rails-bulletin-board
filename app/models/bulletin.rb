@@ -32,7 +32,7 @@ class Bulletin < ApplicationRecord
                     size: { less_than_or_equal_to: 5.megabytes }
 
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, counter_cache: true
   has_one_attached :image
 
   aasm column: 'state' do
