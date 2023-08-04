@@ -3,7 +3,7 @@
 class Web::BulletinsController < Web::ApplicationController
   def index
     authorize(Bulletin)
-    @bulletins = Bulletin.all.includes([:image_attachment])
+    @bulletins = Bulletin.published.includes([:image_attachment])
   end
 
   def show
