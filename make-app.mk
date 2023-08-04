@@ -26,6 +26,7 @@ logs:
 	tail -f log/development.log
 new:
 	rails new $(ARGS) -j esbuild
+	rails turbo:install stimulus:install
 eslint:
 	npx eslint app/javascript --ext .js
 eslint!:

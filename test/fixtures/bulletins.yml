@@ -26,10 +26,19 @@ one:
   title: <%= Faker::Book.title %>
   description: <%= Faker::Lorem.paragraph %>
   user: john
+  state: :draft
   category: one
 
 two:
   title: <%= Faker::Book.title %>
   description: <%= Faker::Lorem.paragraph %>
   user: jane
+  state: :under_moderation
+  category: two
+
+three:
+  title: <%= Faker::Book.title %>
+  description: <%= Faker::Lorem.paragraph %>
+  user: jane
+  state: :published
   category: two

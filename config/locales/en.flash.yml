@@ -1,6 +1,18 @@
+---
 en:
   flash:
     web:
+      admin:
+        categories:
+          create:
+            error: Cannot create new category
+            success: Category has been successfully added
+          destroy:
+            error: Cannot remove category
+            success: Category has been successfully removed
+          update:
+            error: Cannot update category
+            success: Category has been successfully updated
       auth:
         callback:
           success: Signed in successfully
@@ -13,11 +25,3 @@ en:
         update:
           error: Cannot update bulletin
           success: Bulletin has been successfully updated
-      admin:
-        categories:
-          create:
-            error: Cannot create new category
-            success: Category has been successfully added
-          update:
-            error: Cannot update category
-            success: Category has been successfully updated

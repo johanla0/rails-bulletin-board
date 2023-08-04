@@ -41,9 +41,10 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
 
   def destroy
     @category = Category.find params[:id]
-    # TODO: Forbid destroying if has bulletins
-    # @category.destroy
-
-    f :success, redirect_back: true, redirect: admin_categories_path
+    if @category.destroy
+      f :success, redirect_back: true, redirect: admin_categories_path, status: :see_other
+    else
+      f :error, redirect_back: true, redirect: admin_categories_path, status: :unprocessable_entity
+    end
   end
 end

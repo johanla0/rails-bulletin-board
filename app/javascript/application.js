@@ -1,4 +1,5 @@
 import { Application } from '@hotwired/stimulus';
+import '@hotwired/turbo-rails';
 import Lightbox from 'stimulus-lightbox';
 // eslint-disable-next-line import/no-unresolved
 import { definitions } from 'stimulus:./controllers';

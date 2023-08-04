@@ -7,3 +7,8 @@ second_image_attachment:
   name: image
   record: two (Bulletin)
   blob: second_image_blob
+
+third_image_attachment:
+  name: image
+  record: three (Bulletin)
+  blob: second_image_blob

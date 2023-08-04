@@ -1,0 +1,5 @@
+.btn-group role='group' aria-label='Action buttons'
+  - if bulletin.under_moderation?
+    = link_to t('publish'), '#', class: 'btn btn-sm btn-primary'
+    = link_to t('reject'), '#', class: 'btn btn-sm btn-warning'
+  = link_to t('archive'), '#', class: 'btn btn-sm btn-danger'

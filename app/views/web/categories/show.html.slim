@@ -6,5 +6,9 @@ nav aria-label='breadcrumb'
       = @category.title
 
 #bulletins
-  - @category.bulletins.each do |bulletin|
+  - if @bulletins.blank?
+    .text-center
+      i.bi.bi-search.display-4
+      .mt-2 = t('no_bulletins_found')
+  - @bulletins.each do |bulletin|
     = render partial: 'web/bulletins/shared/bulletin_wide', locals: { bulletin: }

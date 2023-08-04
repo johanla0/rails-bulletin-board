@@ -3,15 +3,13 @@ h1.mb-4 = t('manage')
   table.table
     thead
       tr
-        th = sort_link(@q, :title)
-        th = sort_link(@q, :created_at)
-        th = t('actions')
+        th.w-50 = sort_link(@q, :title)
+        th.w-25 = sort_link(@q, :created_at)
+        th.w-25
     tbody
       - @bulletins.each do |bulletin|
         tr
           td = link_to bulletin.title, bulletin_path(bulletin)
           td = l(bulletin.created_at, format: :short)
           td
-            = link_to t('publish'), '#', class: 'me-2'
-            = link_to t('reject'), '#', class: 'me-2'
-            = link_to t('archive'), '#', class: 'text-danger'
+            = render partial: 'web/admin/bulletins/shared/action_buttons', locals: { bulletin: }
