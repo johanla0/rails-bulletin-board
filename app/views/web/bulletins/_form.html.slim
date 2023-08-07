@@ -1,5 +1,5 @@
 = simple_form_for bulletin, url: do |f|
-  = f.association :category, include_blank: false
+  = f.association :category, collection: Category.sort_by_slug_asc, include_blank: false
   = f.input :title, input_html: { autocomplete: :off }
   = f.input :description, as: :text, input_html: { autocomplete: :off }
   = f.input :image, as: :file

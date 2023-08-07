@@ -10,12 +10,11 @@ class Web::AuthController < Web::ApplicationController
     user = User.find_by(email:)
     if user
       sign_in user
-      f :success, redirect_back: true, redirect: user_path(user)
     else
       new_user = User.create(name:, email:, username:)
       sign_in new_user
-      f :success, redirect_back: true, redirect: user_path(new_user)
     end
+    f :success, redirect_back: true, redirect: profile_path
   end
 
   def destroy

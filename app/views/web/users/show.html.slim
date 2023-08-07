@@ -16,14 +16,35 @@ div id="#{dom_id(@user)}"
           p.small.mb-0.text-warning.fw-bold
             = t('admin') if @user.admin
     .col-md-8
-      - if @user.bulletins.present?
-        - @user.bulletins.each do |bulletin|
-          = render partial: 'web/bulletins/shared/bulletin_wide', locals: { bulletin: }
-      - else
-        p.text-center
-          i.bi.bi-layout-text-sidebar.fs-1.d-block
-          = t('bulletins_blank')
-          - if @user == current_user
+      = search_form_for @q, url: profile_path, html: { class: 'row g-2 mb-3' } do |f|
+        .col-auto
+          = f.search_field :title_cont, \
+            class: 'form-control', \
+            placeholder: t('simple_form.placeholders.defaults.title'), \
+            autocomplete: :off
+        .col-auto
+          = f.select :category_id_eq, \
+            options_for_select(Category.sort_by_slug_asc.map { |c| [c.decorate.title, c.id] }, @q.category_id_eq), \
+            { include_blank: t('simple_form.placeholders.defaults.category') }, \
+            { class: 'form-select' }
+        .col-auto
+          = f.button type: 'submit', class: 'btn btn-primary' do
+            i.bi.bi-search.me-1
+            = t('search')
+        .col-auto
+          = link_to request.path, class: 'btn btn-outline-primary' do
+            i.bi.bi-eraser.me-1
+            = t('clear_search')
+
+      - if @bulletins.blank?
+        .text-center
+          i.bi.bi-search.display-4
+          .mt-2 = t('no_bulletins_found')
+          p.mt-3.text-center
             = link_to new_bulletin_path, class: 'd-block mt-3' do
               i.bi.bi-file-earmark-plus.me-2
               = t('create_new_bulletin')
+      - else
+        - @bulletins.each do |bulletin|
+          = render partial: 'web/bulletins/shared/bulletin_wide', locals: { bulletin: }
+        = paginate @bulletins
