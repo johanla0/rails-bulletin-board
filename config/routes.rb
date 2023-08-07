@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   scope module: :web do
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
-    get 'auth/logout', to: 'auth#destroy'
+    delete 'auth/logout', to: 'auth#destroy'
 
     get :profile, to: 'users#show'
 
