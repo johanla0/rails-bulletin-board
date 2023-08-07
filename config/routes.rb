@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
     get :profile, to: 'users#show'
 
-    resources :bulletins, except: :index
+    resources :bulletins, except: :index do
+      member do
+        patch :change_state
+      end
+    end
     resources :categories, only: :show
 
     get :admin, to: 'admin#index'

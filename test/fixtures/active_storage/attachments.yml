@@ -8,7 +8,38 @@ second_image_attachment:
   record: two (Bulletin)
   blob: second_image_blob
 
-third_image_attachment:
+
+<% 1.upto(3) do |i| %>
+draft_<%= i %>_attachment:
   name: image
-  record: three (Bulletin)
-  blob: second_image_blob
+  record: draft_<%= i %> (Bulletin)
+  blob: <%= %w[first_image_blob second_image_blob].sample %>
+<% end %>
+
+<% 1.upto(3) do |i| %>
+under_moderation_<%= i %>_attachment:
+  name: image
+  record: under_moderation_<%= i %> (Bulletin)
+  blob: <%= %w[first_image_blob second_image_blob].sample %>
+<% end %>
+
+<% 1.upto(3) do |i| %>
+published_<%= i %>_attachment:
+  name: image
+  record: published_<%= i %> (Bulletin)
+  blob: <%= %w[first_image_blob second_image_blob].sample %>
+<% end %>
+
+<% 1.upto(3) do |i| %>
+rejected_<%= i %>_attachment:
+  name: image
+  record: rejected_<%= i %> (Bulletin)
+  blob: <%= %w[first_image_blob second_image_blob].sample %>
+<% end %>
+
+<% 1.upto(3) do |i| %>
+archived_<%= i %>_attachment:
+  name: image
+  record: archived_<%= i %> (Bulletin)
+  blob: <%= %w[first_image_blob second_image_blob].sample %>
+<% end %>

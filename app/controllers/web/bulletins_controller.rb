@@ -3,7 +3,10 @@
 class Web::BulletinsController < Web::ApplicationController
   def index
     authorize(Bulletin)
-    @bulletins = Bulletin.published.includes([:image_attachment])
+
+    @q = Bulletin.published.ransack(params[:q])
+    @q.sorts = 'updated_at asc' if @q.sorts.empty?
+    @bulletins = @q.result(distinct: true).page(params[:page])
   end
 
   def show
@@ -38,6 +41,7 @@ class Web::BulletinsController < Web::ApplicationController
     @bulletin.assign_attributes(params[:bulletin_form])
 
     if @bulletin.valid?
+      @bulletin.to_moderate if @bulletin.published? || @bulletin.rejected?
       @bulletin.save!
       f :success, redirect: bulletin_path(@bulletin)
     else
@@ -50,5 +54,19 @@ class Web::BulletinsController < Web::ApplicationController
     @bulletin.destroy
 
     f :success, redirect: root_path
+  end
+
+  def change_state
+    bulletin = Bulletin.find(params[:id])
+
+    bulletin = bulletin.becomes(BulletinStateForm)
+    bulletin.aasm.fire params[:state_event]
+
+    if bulletin.valid?
+      bulletin.save!
+      f :success, redirect: bulletin_path(bulletin)
+    else
+      f :error, redirect_back: true, redirect: bulletin_path(bulletin), status: :unprocessable_entity
+    end
   end
 end

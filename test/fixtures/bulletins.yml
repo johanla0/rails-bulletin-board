@@ -22,23 +22,62 @@
 #  user_id      (user_id => users.id)
 #
 
+DEFAULTS: &DEFAULTS
+  user: jane
+  state: :draft
+  category: two
+
 one:
   title: <%= Faker::Book.title %>
   description: <%= Faker::Lorem.paragraph %>
   user: john
-  state: :draft
   category: one
+  state: :draft
 
 two:
+  <<: *DEFAULTS
   title: <%= Faker::Book.title %>
   description: <%= Faker::Lorem.paragraph %>
   user: jane
   state: :under_moderation
   category: two
 
-three:
+<% 1.upto(3) do |i| %>
+draft_<%= i %>:
+  <<: *DEFAULTS
   title: <%= Faker::Book.title %>
   description: <%= Faker::Lorem.paragraph %>
-  user: jane
-  state: :published
-  category: two
+  state: draft
+<% end %>
+
+<% 1.upto(3) do |i| %>
+under_moderation_<%= i %>:
+  <<: *DEFAULTS
+  title: <%= Faker::Book.title %>
+  description: <%= Faker::Lorem.paragraph %>
+  state: under_moderation
+<% end %>
+
+<% 1.upto(3) do |i| %>
+published_<%= i %>:
+  <<: *DEFAULTS
+  title: <%= Faker::Book.title %>
+  description: <%= Faker::Lorem.paragraph %>
+  state: published
+<% end %>
+
+<% 1.upto(3) do |i| %>
+rejected_<%= i %>:
+  <<: *DEFAULTS
+  title: <%= Faker::Book.title %>
+  description: <%= Faker::Lorem.paragraph %>
+  state: rejected
+<% end %>
+
+<% 1.upto(3) do |i| %>
+archived_<%= i %>:
+  <<: *DEFAULTS
+  title: <%= Faker::Book.title %>
+  description: <%= Faker::Lorem.paragraph %>
+  state: archived
+<% end %>

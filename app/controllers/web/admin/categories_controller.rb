@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Web::Admin::CategoriesController < Web::Admin::ApplicationController
   def index
     @q = Category.ransack(params[:q])
     @q.sorts = 'name asc' if @q.sorts.empty?
-    @categories = @q.result(distinct: true)
+    @categories = @q.result(distinct: true).page(params[:page])
   end
 
   def new

@@ -25,6 +25,7 @@
 #
 class Bulletin < ApplicationRecord
   include AASM
+  # include BulletinRepository
 
   IMAGE_CONTENT_TYPES = ['image/png', 'image/jpg', 'image/jpeg'].freeze
 
@@ -40,7 +41,7 @@ class Bulletin < ApplicationRecord
     state :under_moderation, :published, :rejected, :archived
 
     event :to_moderate do
-      transitions from: :draft, to: :under_moderation
+      transitions from: %i[draft rejected published], to: :under_moderation
     end
 
     event :reject do
@@ -56,7 +57,7 @@ class Bulletin < ApplicationRecord
     end
   end
 
-  def self.ransackable_attributes(auth_object = nil)
-    %w[category_id created_at description title updated_at]
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[description title state created_at updated_at category_id]
   end
 end

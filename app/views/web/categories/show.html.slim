@@ -5,10 +5,27 @@ nav aria-label='breadcrumb'
     li.breadcrumb-item.active aria-current='page'
       = @category.title
 
+= search_form_for @q, url: category_path(@category), html: { class: 'row g-2 my-3' } do |f|
+  .col-auto
+    = f.search_field :title_cont, \
+      class: 'form-control', \
+      placeholder: t('simple_form.placeholders.defaults.title'), \
+      autocomplete: :off
+  .col-auto
+    = f.button type: 'submit', class: 'btn btn-primary' do
+      i.bi.bi-search.me-1
+      = t('search')
+  .col-auto
+    = link_to request.path, class: 'btn btn-outline-primary' do
+      i.bi.bi-eraser.me-1
+      = t('clear_search')
+
 #bulletins
   - if @bulletins.blank?
     .text-center
       i.bi.bi-search.display-4
       .mt-2 = t('no_bulletins_found')
-  - @bulletins.each do |bulletin|
-    = render partial: 'web/bulletins/shared/bulletin_wide', locals: { bulletin: }
+  - else
+    - @bulletins.each do |bulletin|
+      = render partial: 'web/bulletins/shared/bulletin_wide', locals: { bulletin: }
+    = paginate @bulletins

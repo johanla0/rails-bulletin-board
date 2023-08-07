@@ -19,6 +19,9 @@ en:
         destroy:
           success: Signed out successfully
       bulletins:
+        change_state:
+          error: Cannot change bulletin's state
+          success: Bulletin's state has been successfully changed
         create:
           error: Cannot create new bulletin
           success: Bulletin has been successfully added

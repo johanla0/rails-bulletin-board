@@ -1,0 +1,8 @@
+---
+en:
+  states:
+    archived: Archived
+    draft: Draft
+    published: Published
+    rejected: Rejected
+    under_moderation: Under moderation (on review)

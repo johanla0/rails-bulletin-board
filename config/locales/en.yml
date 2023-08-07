@@ -33,7 +33,6 @@ en:
   admin: Admin
   all_bulletins: All bulletins
   all_categories: All categories
-  archive: Archive
   bulletin_board: Bulletin board © %{year}
   bulletins:
     slug:
@@ -42,6 +41,7 @@ en:
   bulletins_blank: No bulletins found
   cancel: Cancel
   categories: Categories
+  clear_search: Clear
   create_new_bulletin: Create New Bulletin
   created_at: Created at
   delete: Delete
@@ -54,10 +54,10 @@ en:
   name: Title
   new_bulletin: New bulletin
   no_bulletins_found: No bulletins found
+  no_categories_found: No categories found
   ok: Ok
-  publish: Publish
-  reject: Reject
   remove: Remove
+  search: Search
   show: Show
   sign_in: Sign in
   sign_out: Sign out
@@ -69,6 +69,12 @@ en:
       bulletins:
         index:
           title: All bulletins
+        shared:
+          action_buttons:
+            archive: Archive
+            publish: Publish
+            reject: Reject
+            to_moderate: Send to review
       categories:
         edit:
           editing_category: Editing category
