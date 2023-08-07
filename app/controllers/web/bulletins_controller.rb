@@ -11,18 +11,25 @@ class Web::BulletinsController < Web::ApplicationController
 
   def show
     @bulletin = Bulletin.find(params[:id])
+    authorize(@bulletin)
   end
 
   def new
+    authorize(Bulletin)
+
     @bulletin = BulletinForm.new
   end
 
   def edit
     bulletin = Bulletin.find(params[:id])
+    authorize(bulletin)
+
     @bulletin = bulletin.becomes(BulletinForm)
   end
 
   def create
+    authorize(Bulletin)
+
     @bulletin = BulletinForm.new(params[:bulletin_form])
     @bulletin.user = current_user
 
@@ -36,6 +43,8 @@ class Web::BulletinsController < Web::ApplicationController
 
   def update
     bulletin = Bulletin.find(params[:id])
+    authorize(bulletin)
+
     @bulletin = bulletin.becomes(BulletinForm)
 
     @bulletin.assign_attributes(params[:bulletin_form])
@@ -51,6 +60,8 @@ class Web::BulletinsController < Web::ApplicationController
 
   def destroy
     @bulletin = Bulletin.find(params[:id])
+    authorize(@bulletin)
+
     @bulletin.destroy
 
     f :success, redirect: root_path
@@ -58,6 +69,7 @@ class Web::BulletinsController < Web::ApplicationController
 
   def change_state
     bulletin = Bulletin.find(params[:id])
+    authorize(bulletin)
 
     bulletin = bulletin.becomes(BulletinStateForm)
     bulletin.aasm.fire params[:state_event]

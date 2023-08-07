@@ -55,6 +55,7 @@ en:
   new_bulletin: New bulletin
   no_bulletins_found: No bulletins found
   no_categories_found: No categories found
+  not_authorized: Not enough permissions
   ok: Ok
   remove: Remove
   search: Search

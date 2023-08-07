@@ -2,21 +2,29 @@
 
 class Web::Admin::CategoriesController < Web::Admin::ApplicationController
   def index
+    authorize(Category)
+
     @q = Category.ransack(params[:q])
     @q.sorts = 'name asc' if @q.sorts.empty?
     @categories = @q.result(distinct: true).page(params[:page])
   end
 
   def new
+    authorize(Category)
+
     @category = CategoryForm.new
   end
 
   def edit
     category = Category.find params[:id]
+    authorize(category)
+
     @category = category.becomes(CategoryForm)
   end
 
   def create
+    authorize(Category)
+
     @category = CategoryForm.new(params[:category_form])
 
     if @category.valid?
@@ -29,6 +37,8 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
 
   def update
     category = Category.find params[:id]
+    authorize(category)
+
     @category = category.becomes(CategoryForm)
 
     @category.assign_attributes(params[:category_form])
@@ -43,6 +53,8 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
 
   def destroy
     @category = Category.find params[:id]
+    authorize(@category)
+
     if @category.destroy
       f :success, redirect_back: true, redirect: admin_categories_path, status: :see_other
     else

@@ -2,6 +2,12 @@
 
 class UserPolicy < ApplicationPolicy
   def show?
-    user.present?
+    self?
+  end
+
+  private
+
+  def self?
+    record == user
   end
 end
