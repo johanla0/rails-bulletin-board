@@ -6,25 +6,25 @@
 #  admin      :boolean
 #  email      :string
 #  name       :string
-#  username   :string
+#  nickname   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 john:
   name: John
-  username: github
+  nickname: github
   email: john@test.com
   admin: false
 
 jane:
   name: Jane
-  username: microsoft
+  nickname: microsoft
   email: jane@test.com
   admin: false
 
 admin:
   name: Admin
-  username: johanla0
+  nickname: johanla0
   email: admin@test.com
   admin: true

@@ -8,7 +8,7 @@
 #  admin      :boolean
 #  email      :string
 #  name       :string
-#  username   :string
+#  nickname   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

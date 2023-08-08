@@ -14,7 +14,20 @@
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'valid category' do
+    category = Category.create(
+      slug: :new,
+      name: 'New'
+    )
+
+    assert { category.valid? }
+  end
+
+  test 'invalid category without name' do
+    category = Category.create(
+      slug: :without_name
+    )
+
+    assert { category.errors[:name].any? }
+  end
 end

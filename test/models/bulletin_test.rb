@@ -26,7 +26,17 @@
 require 'test_helper'
 
 class BulletinTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'valid bulletin' do
+    bulletin = bulletins(:one)
+
+    assert { bulletin.valid? }
+  end
+
+  test 'invalid bulletin without title' do
+    bulletin = Bulletin.create(
+      description: Faker::Lorem.paragraph
+    )
+
+    assert { bulletin.errors[:title].any? }
+  end
 end

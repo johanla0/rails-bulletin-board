@@ -28,8 +28,8 @@ DEFAULTS: &DEFAULTS
   category: two
 
 one:
-  title: <%= Faker::Book.title %>
-  description: <%= Faker::Lorem.paragraph %>
+  title: Bulletin one title
+  description: Bulletin one description
   user: john
   category: one
   state: :draft

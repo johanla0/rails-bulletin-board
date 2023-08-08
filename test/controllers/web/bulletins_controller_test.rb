@@ -7,44 +7,48 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @bulletin = bulletins(:one)
   end
 
-  # test 'should get index' do
-  #   get bulletins_url
-  #   assert_response :success
-  # end
+  test '#index' do
+    get root_path
+    assert_response :success
+  end
 
-  # test 'should get new' do
-  #   get new_bulletin_url
-  #   assert_response :success
-  # end
+  test '#new' do
+    get new_bulletin_path
+    assert_response :success
+  end
 
-  # test 'should create bulletin' do
+  # test '#create' do
   #   assert_difference('Bulletin.count') do
-  #     post bulletins_url, params: { bulletin: {} }
+  #     post root_path, params: { bulletin: {} }
   #   end
 
-  #   assert_redirected_to bulletin_url(Bulletin.last)
+  #   assert_redirected_to bulletin_path(Bulletin.last)
   # end
 
-  # test 'should show bulletin' do
-  #   get bulletin_url(@bulletin)
-  #   assert_response :success
+  test '#show' do
+    get bulletin_path(@bulletin)
+    assert_response :success
+  end
+
+  test '#edit' do
+    get edit_bulletin_path(@bulletin)
+    assert_response :success
+  end
+
+  # test '#update' do
+  #   patch bulletin_path(@bulletin), params: { bulletin: {} }
+  #   assert_redirected_to bulletin_path(@bulletin)
   # end
 
-  # test 'should get edit' do
-  #   get edit_bulletin_url(@bulletin)
-  #   assert_response :success
-  # end
-
-  # test 'should update bulletin' do
-  #   patch bulletin_url(@bulletin), params: { bulletin: {} }
-  #   assert_redirected_to bulletin_url(@bulletin)
-  # end
-
-  # test 'should destroy bulletin' do
+  # test '#destroy' do
   #   assert_difference('Bulletin.count', -1) do
-  #     delete bulletin_url(@bulletin)
+  #     delete bulletin_path(@bulletin)
   #   end
 
-  #   assert_redirected_to bulletins_url
+  #   assert_redirected_to root_path
   # end
+
+  test '#change_state' do
+
+  end
 end
