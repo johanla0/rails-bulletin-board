@@ -17,3 +17,7 @@ one:
 two:
   name: Other
   slug: :other
+
+without_bulletins:
+  name: Without bulletins
+  slug: :without_bulletins

@@ -58,15 +58,6 @@ class Web::BulletinsController < Web::ApplicationController
     end
   end
 
-  def destroy
-    @bulletin = Bulletin.find(params[:id])
-    authorize(@bulletin)
-
-    @bulletin.destroy
-
-    f :success, redirect: root_path
-  end
-
   def change_state
     bulletin = Bulletin.find(params[:id])
     authorize(bulletin)

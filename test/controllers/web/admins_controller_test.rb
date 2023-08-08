@@ -3,8 +3,16 @@
 require 'test_helper'
 
 class AdminsControllerTest < ActionDispatch::IntegrationTest
-  test 'should get index' do
-    get admins_index_path
+  test '#index' do
+    user = users(:admin)
+    sign_in user
+
+    get admin_bulletins_path
     assert_response :success
+  end
+
+  test '#index unauthorized' do
+    get admin_bulletins_path
+    assert_response :redirect
   end
 end

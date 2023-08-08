@@ -6,6 +6,10 @@ require 'rails/test_help'
 
 OmniAuth.config.test_mode = true
 
+Minitest.after_run do
+  FileUtils.rm_rf(ActiveStorage::Blob.services.fetch(:test_fixtures).root)
+end
+
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)

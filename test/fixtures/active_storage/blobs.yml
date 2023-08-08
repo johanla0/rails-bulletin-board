@@ -1,2 +1,3 @@
 first_image_blob: <%= ActiveStorage::FixtureSet.blob filename: 'image_01.png', service_name: 'local' %>
 second_image_blob: <%= ActiveStorage::FixtureSet.blob filename: 'image_02.png', service_name: 'local' %>
+third_image_blob: <%= ActiveStorage::FixtureSet.blob filename: 'image_01.png', service_name: 'test_fixtures' %>

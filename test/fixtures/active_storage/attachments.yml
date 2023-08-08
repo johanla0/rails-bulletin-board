@@ -8,6 +8,10 @@ second_image_attachment:
   record: two (Bulletin)
   blob: second_image_blob
 
+third_image_attachment:
+  name: image
+  record: three (Bulletin)
+  blob: third_image_blob
 
 <% 1.upto(3) do |i| %>
 draft_<%= i %>_attachment:

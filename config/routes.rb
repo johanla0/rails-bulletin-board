@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
     get :profile, to: 'users#show'
 
-    resources :bulletins, except: :index do
+    resources :bulletins, only: %i[new create edit update show] do
       member do
         patch :change_state
       end
