@@ -1,9 +1,10 @@
-- if bulletin.draft? || bulletin.rejected? || bulletin.under_moderation? || bulletin.may_archive?
+- if bulletin.may_change_state?
   .btn-group role='group' aria-label='Action buttons'
     - if bulletin.draft? || bulletin.rejected?
       = link_to t('.to_moderate'), change_state_bulletin_path(bulletin, state_event: :to_moderate), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch }
-    - if bulletin.under_moderation?
-      = link_to t('.publish'), change_state_bulletin_path(bulletin, state_event: :publish), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch }
-      = link_to t('.reject'), change_state_bulletin_path(bulletin, state_event: :reject), class: 'btn btn-sm btn-warning', data: { turbo_method: :patch }
-    - if bulletin.may_archive?
-      = link_to t('.archive'), change_state_bulletin_path(bulletin, state_event: :archive), class: 'btn btn-sm btn-danger', data: { turbo_method: :patch }
+    - if current_user.admin?
+      - if bulletin.under_moderation?
+        = link_to t('.publish'), change_state_bulletin_path(bulletin, state_event: :publish), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch }
+        = link_to t('.reject'), change_state_bulletin_path(bulletin, state_event: :reject), class: 'btn btn-sm btn-warning', data: { turbo_method: :patch }
+      - if bulletin.may_archive?
+        = link_to t('.archive'), change_state_bulletin_path(bulletin, state_event: :archive), class: 'btn btn-sm btn-danger', data: { turbo_method: :patch }
