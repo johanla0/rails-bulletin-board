@@ -12,11 +12,16 @@ Rails.application.routes.draw do
 
     get :profile, to: 'users#show'
 
-    resources :bulletins, only: %i[new create edit update show] do
+    resources :bulletins, only: %i[index new create edit update show] do
       member do
         patch :change_state
+        patch :archive, action: :change_state, controller: 'bulletins', defaults: { state_event: 'archive' }
+        patch :publish, action: :change_state, controller: 'bulletins', defaults: { state_event: 'publish' }
+        patch :reject, action: :change_state, controller: 'bulletins', defaults: { state_event: 'reject' }
+        patch :to_moderate, action: :change_state, controller: 'bulletins', defaults: { state_event: 'to_moderate' }
       end
     end
+
     resources :categories, only: :show
 
     get :admin, to: 'admin#index'
