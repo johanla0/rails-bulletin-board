@@ -15,11 +15,6 @@ Rails.application.routes.draw do
     resources :bulletins, only: %i[index new create edit update show] do
       member do
         patch :change_state
-        # NOTE: Added these routes to pass Hexlet tests
-        patch :archive, action: :change_state, controller: 'bulletins', defaults: { state_event: 'archive' }
-        patch :publish, action: :change_state, controller: 'bulletins', defaults: { state_event: 'publish' }
-        patch :reject, action: :change_state, controller: 'bulletins', defaults: { state_event: 'reject' }
-        patch :to_moderate, action: :change_state, controller: 'bulletins', defaults: { state_event: 'to_moderate' }
       end
     end
 
@@ -27,7 +22,15 @@ Rails.application.routes.draw do
 
     get :admin, to: 'admin#index'
     namespace :admin do
-      resources :bulletins, only: :index
+      resources :bulletins, only: :index do
+        member do
+          # NOTE: Added these routes to pass Hexlet tests
+          patch :archive, action: :change_state, controller: 'bulletins', defaults: { state_event: 'archive' }
+          patch :publish, action: :change_state, controller: '/web/bulletins', defaults: { state_event: 'publish' }
+          patch :reject, action: :change_state, controller: 'bulletins', defaults: { state_event: 'reject' }
+          patch :to_moderate, action: :change_state, controller: 'bulletins', defaults: { state_event: 'to_moderate' }
+        end
+      end
       resources :categories, only: %i[index new create edit update destroy]
     end
   end
