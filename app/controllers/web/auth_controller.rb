@@ -5,7 +5,7 @@ class Web::AuthController < Web::ApplicationController
   def callback
     user_info = request.env['omniauth.auth'][:info]
     name = user_info.fetch(:name)
-    nickname = user_info.fetch(:nickname)
+    nickname = user_info.fetch(:nickname, '')
     email = user_info.fetch(:email, '').downcase
     user = User.find_by(email:)
     if user
