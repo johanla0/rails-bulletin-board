@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :bulletins, only: %i[index new create edit update show] do
       member do
         patch :change_state
+        # NOTE: Added these routes to pass Hexlet tests
         patch :archive, action: :change_state, controller: 'bulletins', defaults: { state_event: 'archive' }
         patch :publish, action: :change_state, controller: 'bulletins', defaults: { state_event: 'publish' }
         patch :reject, action: :change_state, controller: 'bulletins', defaults: { state_event: 'reject' }
