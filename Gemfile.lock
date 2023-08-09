@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/igor-i/active_form_model.git
+  revision: ec4ad23abd5ef2c2e75cc41d6a33a3d7fe1a5259
+  specs:
+    active_form_model (0.5.0)
+      activesupport (>= 3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -48,8 +55,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_form_model (0.4.1)
-      activesupport (>= 3)
     active_storage_validations (1.0.4)
       activejob (>= 5.2.0)
       activemodel (>= 5.2.0)
@@ -372,7 +377,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  active_form_model
+  active_form_model!
   active_storage_validations
   annotate (~> 3.2)
   aws-sdk-s3

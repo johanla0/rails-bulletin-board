@@ -9,7 +9,7 @@ ruby '3.2.2'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
 
 gem 'aasm'
-gem 'active_form_model'
+gem 'active_form_model', github: 'igor-i/active_form_model'
 gem 'active_storage_validations'
 gem 'aws-sdk-s3'
 gem 'cssbundling-rails'
