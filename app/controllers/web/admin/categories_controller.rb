@@ -25,7 +25,7 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
   def create
     authorize(Category)
 
-    @category = CategoryForm.new(params[:category_form])
+    @category = CategoryForm.new(params[:category])
 
     if @category.valid?
       @category.save!
@@ -41,7 +41,7 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
 
     @category = category.becomes(CategoryForm)
 
-    @category.assign_attributes(params[:category_form])
+    @category.assign_attributes(params[:category])
 
     if @category.valid?
       @category.save!

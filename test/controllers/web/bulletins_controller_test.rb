@@ -31,7 +31,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
       category_id: @category.id
     }
 
-    post bulletins_path, params: { bulletin_form: attrs }
+    post bulletins_path, params: { bulletin: attrs }
 
     assert_response :redirect
 
@@ -59,7 +59,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
       title: SecureRandom.uuid
     }
 
-    patch bulletin_path(@bulletin), params: { bulletin_form: new_attrs }
+    patch bulletin_path(@bulletin), params: { bulletin: new_attrs }
 
     assert_response :redirect
 

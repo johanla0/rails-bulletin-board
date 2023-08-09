@@ -42,7 +42,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       slug: Faker::Lorem.word
     }
 
-    post admin_categories_path, params: { category_form: attrs }
+    post admin_categories_path, params: { category: attrs }
 
     assert_response :redirect
 
@@ -59,7 +59,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       slug: Faker::Lorem.word
     }
 
-    patch admin_category_path(@category), params: { category_form: new_attrs }
+    patch admin_category_path(@category), params: { category: new_attrs }
 
     assert_response :redirect
 

@@ -30,7 +30,7 @@ class Web::BulletinsController < Web::ApplicationController
   def create
     authorize(Bulletin)
 
-    @bulletin = BulletinForm.new(params[:bulletin_form])
+    @bulletin = BulletinForm.new(params[:bulletin])
     @bulletin.user = current_user
 
     if @bulletin.valid?
@@ -47,7 +47,7 @@ class Web::BulletinsController < Web::ApplicationController
 
     @bulletin = bulletin.becomes(BulletinForm)
 
-    @bulletin.assign_attributes(params[:bulletin_form])
+    @bulletin.assign_attributes(params[:bulletin])
 
     if @bulletin.valid?
       @bulletin.to_moderate if @bulletin.published? || @bulletin.rejected?
