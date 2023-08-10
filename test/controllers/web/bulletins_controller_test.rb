@@ -75,7 +75,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     patch change_state_bulletin_path(bulletin), params: { state_event: :publish }
 
-    assert_response :redirect
+    assert_response :success
 
     bulletin.reload
 
