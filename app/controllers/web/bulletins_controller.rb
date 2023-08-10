@@ -4,7 +4,11 @@ class Web::BulletinsController < Web::ApplicationController
   def index
     authorize(Bulletin)
 
-    @q = Bulletin.published.ransack(params[:q])
+    @q = if user_signed_in? && current_user.admin?
+           Bulletin.ransack(params[:q])
+         else
+           Bulletin.published.ransack(params[:q])
+         end
     @q.sorts = 'updated_at asc' if @q.sorts.empty?
     @bulletins = @q.result(distinct: true).page(params[:page])
   end
@@ -46,11 +50,10 @@ class Web::BulletinsController < Web::ApplicationController
     authorize(bulletin)
 
     @bulletin = bulletin.becomes(BulletinForm)
-
     @bulletin.assign_attributes(params[:bulletin])
 
     if @bulletin.valid?
-      @bulletin.to_moderate if @bulletin.published? || @bulletin.rejected?
+      @bulletin.to_moderate if @bulletin.published?
       @bulletin.save!
       f :success, redirect: bulletin_path(@bulletin)
     else
@@ -67,7 +70,19 @@ class Web::BulletinsController < Web::ApplicationController
 
     if bulletin.valid?
       bulletin.save!
-      f :success, redirect: bulletin_path(bulletin)
+      f :success,
+        turbo_stream: [
+          turbo_stream.replace(
+            helpers.dom_id(bulletin, :buttons),
+            partial: 'web/admin/bulletins/shared/action_buttons',
+            locals: { bulletin: }
+          ),
+          turbo_stream.replace(
+            helpers.dom_id(bulletin, :state),
+            partial: 'web/admin/bulletins/state',
+            locals: { bulletin: }
+          )
+        ]
     else
       f :error, redirect_back: true, redirect: bulletin_path(bulletin), status: :unprocessable_entity
     end

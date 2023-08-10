@@ -1,6 +1,6 @@
-.col
-  .card.shadow-sm.position-relative id="#{dom_id bulletin}"
-    = image_tag bulletin.image, class: 'card-img-top x-object-fit-none', height: '200'
+.col id="#{dom_id bulletin}"
+  .card.shadow-sm.position-relative class="#{'bg-secondary-subtle opacity-75' if !bulletin.published?}"
+    = image_tag bulletin.image, class: 'card-img-top object-fit-cover', height: '200'
     .card-body
       h5.card-title = link_to bulletin.title, bulletin, class: 'stretched-link'
       p.card-subtitle = bulletin.description.truncate(30)

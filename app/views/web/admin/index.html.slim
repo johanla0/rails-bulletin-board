@@ -31,6 +31,5 @@ h1.mb-4 = t('manage')
           tr
             td.align-middle = link_to bulletin.title, bulletin_path(bulletin)
             td.align-middle = l(bulletin.created_at, format: :short)
-            td
-              = render partial: 'web/admin/bulletins/shared/action_buttons', locals: { bulletin: }
+            td = render partial: 'web/admin/bulletins/shared/action_buttons', locals: { bulletin: }
     = paginate @bulletins

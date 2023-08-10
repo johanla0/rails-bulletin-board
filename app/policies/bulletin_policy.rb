@@ -25,11 +25,13 @@ class BulletinPolicy < ApplicationPolicy
     update?
   end
 
-  def destroy?
-    user.present? && user.admin?
-  end
-
   def change_state?
     update? && user.admin?
+  end
+
+  alias may_perform_moderator_actions? change_state?
+
+  def show_all?
+    user.present? && user.admin?
   end
 end
