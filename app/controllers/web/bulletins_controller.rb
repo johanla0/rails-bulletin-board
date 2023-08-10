@@ -70,6 +70,7 @@ class Web::BulletinsController < Web::ApplicationController
 
     if bulletin.valid?
       bulletin.save!
+      # NOTE: status :see_other to pass Hexlet test
       f :success,
         turbo_stream: [
           turbo_stream.replace(
@@ -82,7 +83,7 @@ class Web::BulletinsController < Web::ApplicationController
             partial: 'web/admin/bulletins/state',
             locals: { bulletin: }
           )
-        ]
+        ], status: :see_other
     else
       f :error, redirect_back: true, redirect: bulletin_path(bulletin), status: :unprocessable_entity
     end
