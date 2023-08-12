@@ -13,6 +13,16 @@ third_image_attachment:
   record: three (Bulletin)
   blob: third_image_blob
 
+draft_attachment:
+  name: image
+  record: draft (Bulletin)
+  blob: second_image_blob
+
+under_moderation_attachment:
+  name: image
+  record: under_moderation (Bulletin)
+  blob: second_image_blob
+
 <% 1.upto(3) do |i| %>
 draft_<%= i %>_attachment:
   name: image

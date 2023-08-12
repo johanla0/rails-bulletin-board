@@ -68,12 +68,12 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert { @bulletin.title == new_attrs[:title] }
   end
 
-  test '#change_state successful' do
-    bulletin = bulletins(:two)
+  test '#publish successful' do
+    bulletin = bulletins(:under_moderation)
     user = users(:admin)
     sign_in user
 
-    patch change_state_bulletin_path(bulletin), params: { state_event: :publish }
+    patch publish_bulletin_path(bulletin)
 
     assert_response :redirect
 
@@ -82,17 +82,59 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert { bulletin.published? }
   end
 
-  test '#change_state failed' do
-    bulletin = bulletins(:two)
+  test '#publish failed' do
+    bulletin = bulletins(:under_moderation)
     user = users(:jane)
     sign_in user
 
-    patch change_state_bulletin_path(bulletin), params: { state_event: :publish }
+    patch publish_bulletin_path(bulletin)
 
     assert_response :redirect
 
     bulletin.reload
 
     assert { !bulletin.published? }
+  end
+
+  test '#archive successful' do
+    bulletin = bulletins(:two)
+    user = users(:admin)
+    sign_in user
+
+    patch archive_bulletin_path(bulletin)
+
+    assert_response :redirect
+
+    bulletin.reload
+
+    assert { bulletin.archived? }
+  end
+
+  test '#reject successful' do
+    bulletin = bulletins(:under_moderation)
+    user = users(:admin)
+    sign_in user
+
+    patch reject_bulletin_path(bulletin)
+
+    assert_response :redirect
+
+    bulletin.reload
+
+    assert { bulletin.rejected? }
+  end
+
+  test '#to_moderate successful' do
+    bulletin = bulletins(:draft)
+    user = users(:admin)
+    sign_in user
+
+    patch to_moderate_bulletin_path(bulletin)
+
+    assert_response :redirect
+
+    bulletin.reload
+
+    assert { bulletin.under_moderation? }
   end
 end
