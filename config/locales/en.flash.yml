@@ -13,6 +13,19 @@ en:
           update:
             error: Cannot update category
             success: Category has been updated
+        bulletins:
+          archive:
+            error: Cannot archive bulletin
+            success: Bulletin has been archived
+          publish:
+            error: Cannot publish bulletin
+            success: Bulletin has been published
+          reject:
+            error: Cannot reject bulletin
+            success: Bulletin has been rejected
+          to_moderate:
+            error: Cannot send bulletin to review
+            success: Bulletin has been sent to review
       auth:
         callback:
           success: Signed in successfully

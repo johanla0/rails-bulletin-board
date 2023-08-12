@@ -26,19 +26,19 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def to_moderate?
-    update?
-  end
-
-  def publish?
-    update? && user.admin?
-  end
-
-  def reject?
-    update? && user.admin?
+    update? && owner?
   end
 
   def archive?
-    update? && (user.admin? || owner?)
+    update? && owner?
+  end
+
+  def publish?
+    false
+  end
+
+  def reject?
+    false
   end
 
   def may_perform_moderator_actions?
