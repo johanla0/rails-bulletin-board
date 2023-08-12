@@ -44,7 +44,7 @@ two:
 draft:
   title: Bulletin draft title
   description: Bulletin draft description
-  user: john
+  user: jane
   category: one
   state: :draft
 

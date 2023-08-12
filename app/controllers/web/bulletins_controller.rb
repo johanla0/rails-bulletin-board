@@ -88,60 +88,6 @@ class Web::BulletinsController < Web::ApplicationController
     end
   end
 
-  def reject
-    bulletin = Bulletin.find(params[:id])
-    authorize(bulletin)
-
-    bulletin.reject
-
-    if bulletin.valid?
-      bulletin.save!
-      # NOTE: status :see_other to pass specific Hexlet test
-      f :success,
-        turbo_stream: [
-          turbo_stream.replace(
-            helpers.dom_id(bulletin, :buttons),
-            partial: 'web/admin/bulletins/shared/action_buttons',
-            locals: { bulletin: }
-          ),
-          turbo_stream.replace(
-            helpers.dom_id(bulletin, :state),
-            partial: 'web/admin/bulletins/state',
-            locals: { bulletin: }
-          )
-        ], status: :see_other
-    else
-      f :error, redirect_back: true, redirect: bulletin_path(bulletin), status: :unprocessable_entity
-    end
-  end
-
-  def publish
-    bulletin = Bulletin.find(params[:id])
-    authorize(bulletin)
-
-    bulletin.publish
-
-    if bulletin.valid?
-      bulletin.save!
-      # NOTE: status :see_other to pass specific Hexlet test
-      f :success,
-        turbo_stream: [
-          turbo_stream.replace(
-            helpers.dom_id(bulletin, :buttons),
-            partial: 'web/admin/bulletins/shared/action_buttons',
-            locals: { bulletin: }
-          ),
-          turbo_stream.replace(
-            helpers.dom_id(bulletin, :state),
-            partial: 'web/admin/bulletins/state',
-            locals: { bulletin: }
-          )
-        ], status: :see_other
-    else
-      f :error, redirect_back: true, redirect: bulletin_path(bulletin), status: :unprocessable_entity
-    end
-  end
-
   def archive
     bulletin = Bulletin.find(params[:id])
     authorize(bulletin)

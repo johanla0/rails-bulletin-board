@@ -15,8 +15,6 @@ Rails.application.routes.draw do
     resources :bulletins, only: %i[index new create edit update show] do
       member do
         patch :archive
-        patch :publish
-        patch :reject
         patch :to_moderate
       end
     end
@@ -25,7 +23,14 @@ Rails.application.routes.draw do
 
     get :admin, to: 'admin#index'
     namespace :admin do
-      resources :bulletins, only: :index
+      resources :bulletins, only: :index do
+        member do
+          patch :archive
+          patch :publish
+          patch :to_moderate
+          patch :reject
+        end
+      end
       resources :categories, only: %i[index new create edit update destroy]
     end
   end

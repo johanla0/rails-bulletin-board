@@ -1,11 +1,7 @@
 div id="#{dom_id(bulletin, :buttons)}"
-  - if policy(bulletin).may_perform_moderator_actions? || policy(bulletin).archive?
+  - if user_signed_in?
     .btn-group role='group' aria-label='Action buttons'
-      - if policy(bulletin).may_perform_moderator_actions?
-        - if bulletin.may_to_moderate? && !bulletin.published?
-          = link_to t('.to_moderate'), to_moderate_bulletin_path(bulletin), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch }
-        - if bulletin.under_moderation?
-          = link_to t('.publish'), publish_bulletin_path(bulletin), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch }
-          = link_to t('.reject'), reject_bulletin_path(bulletin), class: 'btn btn-sm btn-warning', data: { turbo_method: :patch }
-      - if bulletin.may_archive? && policy(bulletin).archive?
-        = link_to t('.archive'), archive_bulletin_path(bulletin), class: 'btn btn-sm btn-danger', data: { turbo_method: :patch }
+      = link_to_bulletin_action bulletin, :to_moderate, class: 'btn btn-sm btn-primary'
+      = link_to_bulletin_action bulletin, :publish, class: 'btn btn-sm btn-primary'
+      = link_to_bulletin_action bulletin, :reject, class: 'btn btn-sm btn-warning'
+      = link_to_bulletin_action bulletin, :archive, class: 'btn btn-sm btn-danger'

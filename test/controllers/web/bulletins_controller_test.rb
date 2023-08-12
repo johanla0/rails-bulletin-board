@@ -68,38 +68,11 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert { @bulletin.title == new_attrs[:title] }
   end
 
-  test '#publish successful' do
-    bulletin = bulletins(:under_moderation)
-    user = users(:admin)
-    sign_in user
-
-    patch publish_bulletin_path(bulletin)
-
-    assert_response :redirect
-
-    bulletin.reload
-
-    assert { bulletin.published? }
-  end
-
-  test '#publish failed' do
-    bulletin = bulletins(:under_moderation)
+  test '#archive as user successful' do
     user = users(:jane)
     sign_in user
 
-    patch publish_bulletin_path(bulletin)
-
-    assert_response :redirect
-
-    bulletin.reload
-
-    assert { !bulletin.published? }
-  end
-
-  test '#archive successful' do
     bulletin = bulletins(:two)
-    user = users(:admin)
-    sign_in user
 
     patch archive_bulletin_path(bulletin)
 
@@ -110,24 +83,11 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert { bulletin.archived? }
   end
 
-  test '#reject successful' do
-    bulletin = bulletins(:under_moderation)
-    user = users(:admin)
+  test '#to_moderate as user successful' do
+    user = users(:jane)
     sign_in user
 
-    patch reject_bulletin_path(bulletin)
-
-    assert_response :redirect
-
-    bulletin.reload
-
-    assert { bulletin.rejected? }
-  end
-
-  test '#to_moderate successful' do
     bulletin = bulletins(:draft)
-    user = users(:admin)
-    sign_in user
 
     patch to_moderate_bulletin_path(bulletin)
 

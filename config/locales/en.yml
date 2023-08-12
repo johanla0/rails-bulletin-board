@@ -35,6 +35,11 @@ en:
   all_categories: All categories
   bulletin_board: Bulletin board © %{year}
   bulletins:
+    actions:
+      archive: Archive
+      publish: Publish
+      reject: Reject
+      to_moderate: Send to review
     slug:
       general: General
       other: Other
@@ -71,12 +76,6 @@ en:
       bulletins:
         index:
           title: All bulletins
-        shared:
-          action_buttons:
-            archive: Archive
-            publish: Publish
-            reject: Reject
-            to_moderate: Send to review
       categories:
         edit:
           editing_category: Editing category
