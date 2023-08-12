@@ -61,8 +61,4 @@ class Bulletin < ApplicationRecord
   def self.ransackable_attributes(_auth_object = nil)
     %w[description title state created_at updated_at category_id]
   end
-
-  def may_change_state?
-    draft? || rejected? || under_moderation? || may_archive?
-  end
 end

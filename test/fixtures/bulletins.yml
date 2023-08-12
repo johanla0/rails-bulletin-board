@@ -35,9 +35,22 @@ one:
   state: :draft
 
 two:
-  <<: *DEFAULTS
   title: <%= Faker::Book.title %>
   description: <%= Faker::Lorem.paragraph %>
+  user: jane
+  state: :under_moderation
+  category: two
+
+draft:
+  title: Bulletin draft title
+  description: Bulletin draft description
+  user: john
+  category: one
+  state: :draft
+
+under_moderation:
+  title: Bulletin under moderation title
+  description: Bulletin under moderation title
   user: jane
   state: :under_moderation
   category: two

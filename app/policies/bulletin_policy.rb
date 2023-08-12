@@ -25,13 +25,33 @@ class BulletinPolicy < ApplicationPolicy
     update?
   end
 
-  def change_state?
+  def to_moderate?
+    update?
+  end
+
+  def publish?
     update? && user.admin?
   end
 
-  alias may_perform_moderator_actions? change_state?
+  def reject?
+    update? && user.admin?
+  end
+
+  def archive?
+    update? && (user.admin? || owner?)
+  end
+
+  def may_perform_moderator_actions?
+    update? && user.admin?
+  end
 
   def show_all?
     user.present? && user.admin?
+  end
+
+  private
+
+  def owner?
+    record.user == user
   end
 end

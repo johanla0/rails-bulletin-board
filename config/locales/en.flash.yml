@@ -6,25 +6,34 @@ en:
         categories:
           create:
             error: Cannot create new category
-            success: Category has been successfully added
+            success: Category has been added
           destroy:
             error: Cannot remove category
-            success: Category has been successfully removed
+            success: Category has been removed
           update:
             error: Cannot update category
-            success: Category has been successfully updated
+            success: Category has been updated
       auth:
         callback:
           success: Signed in successfully
         destroy:
           success: Signed out successfully
       bulletins:
-        change_state:
-          error: Cannot change bulletin's state
-          success: Bulletin's state has been successfully changed
+        archive:
+          error: Cannot archive bulletin
+          success: Bulletin has been archived
         create:
           error: Cannot create new bulletin
-          success: Bulletin has been successfully added
+          success: Bulletin has been added
+        publish:
+          error: Cannot publish bulletin
+          success: Bulletin has been published
+        reject:
+          error: Cannot reject bulletin
+          success: Bulletin has been rejected
+        to_moderate:
+          error: Cannot send bulletin to review
+          success: Bulletin has been sent to review
         update:
           error: Cannot update bulletin
-          success: Bulletin has been successfully updated
+          success: Bulletin has been updated

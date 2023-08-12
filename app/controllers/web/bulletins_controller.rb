@@ -61,16 +61,96 @@ class Web::BulletinsController < Web::ApplicationController
     end
   end
 
-  def change_state
+  def to_moderate
     bulletin = Bulletin.find(params[:id])
     authorize(bulletin)
 
-    bulletin = bulletin.becomes(BulletinStateForm)
-    bulletin.aasm.fire params[:state_event]
+    bulletin.to_moderate
 
     if bulletin.valid?
       bulletin.save!
-      # NOTE: status :see_other to pass Hexlet test
+      # NOTE: status :see_other to pass specific Hexlet test
+      f :success,
+        turbo_stream: [
+          turbo_stream.replace(
+            helpers.dom_id(bulletin, :buttons),
+            partial: 'web/admin/bulletins/shared/action_buttons',
+            locals: { bulletin: }
+          ),
+          turbo_stream.replace(
+            helpers.dom_id(bulletin, :state),
+            partial: 'web/admin/bulletins/state',
+            locals: { bulletin: }
+          )
+        ], status: :see_other
+    else
+      f :error, redirect_back: true, redirect: bulletin_path(bulletin), status: :unprocessable_entity
+    end
+  end
+
+  def reject
+    bulletin = Bulletin.find(params[:id])
+    authorize(bulletin)
+
+    bulletin.reject
+
+    if bulletin.valid?
+      bulletin.save!
+      # NOTE: status :see_other to pass specific Hexlet test
+      f :success,
+        turbo_stream: [
+          turbo_stream.replace(
+            helpers.dom_id(bulletin, :buttons),
+            partial: 'web/admin/bulletins/shared/action_buttons',
+            locals: { bulletin: }
+          ),
+          turbo_stream.replace(
+            helpers.dom_id(bulletin, :state),
+            partial: 'web/admin/bulletins/state',
+            locals: { bulletin: }
+          )
+        ], status: :see_other
+    else
+      f :error, redirect_back: true, redirect: bulletin_path(bulletin), status: :unprocessable_entity
+    end
+  end
+
+  def publish
+    bulletin = Bulletin.find(params[:id])
+    authorize(bulletin)
+
+    bulletin.publish
+
+    if bulletin.valid?
+      bulletin.save!
+      # NOTE: status :see_other to pass specific Hexlet test
+      f :success,
+        turbo_stream: [
+          turbo_stream.replace(
+            helpers.dom_id(bulletin, :buttons),
+            partial: 'web/admin/bulletins/shared/action_buttons',
+            locals: { bulletin: }
+          ),
+          turbo_stream.replace(
+            helpers.dom_id(bulletin, :state),
+            partial: 'web/admin/bulletins/state',
+            locals: { bulletin: }
+          )
+        ], status: :see_other
+    else
+      f :error, redirect_back: true, redirect: bulletin_path(bulletin), status: :unprocessable_entity
+    end
+  end
+
+  def archive
+    bulletin = Bulletin.find(params[:id])
+    authorize(bulletin)
+
+    bulletin.archive
+
+    if bulletin.valid?
+      bulletin.save!
+      # NOTE: status :see_other to pass specific Hexlet test
       f :success,
         turbo_stream: [
           turbo_stream.replace(

@@ -1,11 +1,11 @@
 div id="#{dom_id(bulletin, :buttons)}"
-  - if bulletin.may_change_state?
+  - if policy(bulletin).may_perform_moderator_actions? || policy(bulletin).archive?
     .btn-group role='group' aria-label='Action buttons'
-      - if bulletin.may_to_moderate? && !bulletin.published?
-        = link_to t('.to_moderate'), change_state_bulletin_path(bulletin, state_event: :to_moderate), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch }
       - if policy(bulletin).may_perform_moderator_actions?
+        - if bulletin.may_to_moderate? && !bulletin.published?
+          = link_to t('.to_moderate'), to_moderate_bulletin_path(bulletin), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch }
         - if bulletin.under_moderation?
-          = link_to t('.publish'), change_state_bulletin_path(bulletin, state_event: :publish), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch }
-          = link_to t('.reject'), change_state_bulletin_path(bulletin, state_event: :reject), class: 'btn btn-sm btn-warning', data: { turbo_method: :patch }
-        - if bulletin.may_archive?
-          = link_to t('.archive'), change_state_bulletin_path(bulletin, state_event: :archive), class: 'btn btn-sm btn-danger', data: { turbo_method: :patch }
+          = link_to t('.publish'), publish_bulletin_path(bulletin), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch }
+          = link_to t('.reject'), reject_bulletin_path(bulletin), class: 'btn btn-sm btn-warning', data: { turbo_method: :patch }
+      - if bulletin.may_archive? && policy(bulletin).archive?
+        = link_to t('.archive'), archive_bulletin_path(bulletin), class: 'btn btn-sm btn-danger', data: { turbo_method: :patch }
