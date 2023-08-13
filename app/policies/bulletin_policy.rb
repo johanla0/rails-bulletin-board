@@ -6,7 +6,7 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user_is_owner? || record.published?
   end
 
   def create?
@@ -26,11 +26,11 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def to_moderate?
-    update? && owner?
+    update? && user_is_owner?
   end
 
   def archive?
-    update? && owner?
+    update? && user_is_owner?
   end
 
   def publish?
@@ -51,7 +51,7 @@ class BulletinPolicy < ApplicationPolicy
 
   private
 
-  def owner?
+  def user_is_owner?
     record.user == user
   end
 end

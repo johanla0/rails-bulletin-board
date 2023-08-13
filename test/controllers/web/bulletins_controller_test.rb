@@ -40,9 +40,16 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert { bulletin.present? }
   end
 
-  test '#show' do
+  test '#show authorized unpublished successful' do
+    sign_in @user
+
     get bulletin_path(@bulletin)
     assert_response :success
+  end
+
+  test '#show unauthorized unpublished failed' do
+    get bulletin_path(@bulletin)
+    assert_response :redirect
   end
 
   test '#edit' do

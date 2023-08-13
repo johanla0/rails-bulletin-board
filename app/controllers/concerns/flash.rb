@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 module Flash
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def f(key, options = {})
     scope = :flash
     controller = self.class
     errors = options[:errors]
     redirect_path = options[:redirect]
-    render_template = options[:render]
     keys = build_path(key, controller, params[:action])
     msg = I18n.t(keys.shift, scope:, default: keys, errors:)
     status = options[:status].presence || :ok
@@ -22,20 +23,21 @@ module Flash
     end
 
     if redirect_path
-      return redirect_back(fallback_location: redirect_path) if options[:redirect_back].present?
-
-      redirect_to redirect_path
-    elsif render_template
+      if options[:redirect_back].present?
+        redirect_back(fallback_location: redirect_path)
+      else
+        redirect_to redirect_path
+      end
+    elsif options[:render]
       render render_template, status:
-    elsif options[:head]
-      head options[:head]
     elsif options[:turbo_stream]
       t_stream = Array.wrap(options[:turbo_stream])
       t_stream << turbo_stream.update('flash', partial: 'layouts/shared/flash')
-
       render turbo_stream: t_stream, status:
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   private
 

@@ -44,9 +44,5 @@ Rails/InverseOf:
   Enabled: false
 Style/NegatedIf:
   Enabled: false
-Metrics/CyclomaticComplexity:
-  Enabled: false
-Metrics/PerceivedComplexity:
-  Enabled: false
 Metrics/ClassLength:
   Enabled: false
