@@ -29,7 +29,6 @@
                 = @bulletin.user.name
                 .small = @bulletin.user.email
 
-  div
-    => link_to t('edit'), edit_bulletin_path(@bulletin)
-    '|
-    = link_to t('delete'), @bulletin, data: { turbo_method: :delete }, class: 'text-danger'
+  - if user_signed_in?
+    div
+      = link_to t('edit'), edit_bulletin_path(@bulletin) if policy(@bulletin).edit?
