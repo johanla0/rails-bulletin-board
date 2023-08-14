@@ -3,7 +3,7 @@
 [![Ruby on Rails CI](https://github.com/johanla0/rails-project-65/actions/workflows/rubyonrails.yml/badge.svg?branch=main)](https://github.com/johanla0/rails-project-65/actions/workflows/rubyonrails.yml)
 
 ### App is located here
-TBU
+https://rails-project-65.onrender.com/
 
 ### Instructions
 #### Install locally (no docker containers currently)
