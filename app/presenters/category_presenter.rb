@@ -2,7 +2,9 @@
 
 class CategoryPresenter < SimpleDelegator
   def title
-    I18n.t(slug, scope: :'bulletins.slug', default: name)
+    return I18n.t(slug, scope: :'bulletins.slug', default: name) if slug.present?
+
+    name
   end
 
   delegate :count, to: :bulletins, prefix: true
