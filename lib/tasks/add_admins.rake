@@ -6,4 +6,9 @@ namespace :after_deploy do
   task make_myself_an_admin: :environment do
     User.where(email: 'idlhero@gmail.com').update(admin: true)
   end
+
+  desc 'Make Hexlet tutor an admin'
+  task add_admin: :environment do
+    User.where(email: 'vasiliqa13@gmail.com').update(admin: true)
+  end
 end

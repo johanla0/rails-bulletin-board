@@ -8,3 +8,4 @@ bundle exec rails assets:clean
 bundle exec rails db:migrate
 bundle exec rails db:migrate:with_data
 rake after_deploy:make_myself_an_admin
+rake after_deploy:add_admin
