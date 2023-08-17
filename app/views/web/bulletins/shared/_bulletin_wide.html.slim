@@ -3,9 +3,8 @@
     .row
       .col-2
         = image_tag bulletin.image, class: 'object-fit-cover p-1 w-100', height: '100'
-      .col-8.py-2
+      .col-6.py-2
         h5.card-title = link_to bulletin.title, bulletin
         p.card-subtitle = bulletin.description.truncate(100)
-      .col-2.align-self-center
-        - unless bulletin.published?
-          = link_to t('review'), bulletin
+      .col-4.align-self-center
+        = render partial: 'web/admin/bulletins/shared/action_buttons', locals: { bulletin: }

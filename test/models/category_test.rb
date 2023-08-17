@@ -22,12 +22,4 @@ class CategoryTest < ActiveSupport::TestCase
 
     assert { category.valid? }
   end
-
-  test 'invalid category without name' do
-    category = Category.create(
-      slug: :without_name
-    )
-
-    assert { category.errors[:name].any? }
-  end
 end

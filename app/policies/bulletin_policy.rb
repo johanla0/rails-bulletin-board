@@ -6,7 +6,7 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def show?
-    user_is_owner? || record.published?
+    show_all? || user_is_owner? || record.published?
   end
 
   def create?
