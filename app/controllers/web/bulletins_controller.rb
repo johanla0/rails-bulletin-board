@@ -16,6 +16,8 @@ class Web::BulletinsController < Web::ApplicationController
   def show
     @bulletin = Bulletin.find(params[:id])
     authorize(@bulletin)
+
+    @category = @bulletin.category.decorate
   end
 
   def new

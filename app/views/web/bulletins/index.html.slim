@@ -9,7 +9,7 @@ hr
       autocomplete: :off
   .col-auto
     = f.select :category_id_eq, \
-      options_for_select(Category.sort_by_slug_asc.map { |c| [c.decorate.title, c.id] }, @q.category_id_eq), \
+      options_for_select(all_categories.map { |c| [c.title, c.id] }, @q.category_id_eq), \
       { include_blank: t('simple_form.placeholders.defaults.category') }, \
       { class: 'form-select' }
   - if policy(Bulletin).show_all?

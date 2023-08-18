@@ -2,6 +2,6 @@
 
 module CategoriesHelper
   def all_categories
-    Category.sort_by_slug_asc.map(&:decorate)
+    Category.all.map(&:decorate).sort_by(&:title)
   end
 end

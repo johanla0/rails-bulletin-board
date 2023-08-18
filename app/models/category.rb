@@ -13,7 +13,6 @@
 #
 class Category < ApplicationRecord
   include Presentable
-  include CategoryRepository
 
   has_many :bulletins, dependent: :restrict_with_error
 
