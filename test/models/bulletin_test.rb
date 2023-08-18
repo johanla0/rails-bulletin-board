@@ -31,12 +31,4 @@ class BulletinTest < ActiveSupport::TestCase
 
     assert { bulletin.valid? }
   end
-
-  test 'invalid bulletin without title' do
-    bulletin = Bulletin.create(
-      description: Faker::Lorem.paragraph
-    )
-
-    assert { bulletin.errors[:title].any? }
-  end
 end

@@ -29,7 +29,7 @@ module Flash
         redirect_to redirect_path
       end
     elsif options[:render]
-      render render_template, status:
+      render options[:render], status:
     elsif options[:turbo_stream]
       t_stream = Array.wrap(options[:turbo_stream])
       t_stream << turbo_stream.update('flash', partial: 'layouts/shared/flash')

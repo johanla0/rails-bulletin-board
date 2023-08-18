@@ -9,6 +9,13 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  def authenticate_user
+    return current_user if current_user.present?
+
+    flash[:error] = t('not_authorized')
+    redirect_to request.referer || root_path
+  end
+
   private
 
   def user_not_authorized

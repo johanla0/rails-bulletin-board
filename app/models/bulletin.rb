@@ -25,13 +25,11 @@
 #
 class Bulletin < ApplicationRecord
   include AASM
-  # include BulletinRepository
 
   IMAGE_CONTENT_TYPES = ['image/png', 'image/jpg', 'image/jpeg'].freeze
 
   validates :image, content_type: IMAGE_CONTENT_TYPES,
                     size: { less_than_or_equal_to: 5.megabytes }
-  validates :title, :description, :image, presence: true
 
   belongs_to :user
   belongs_to :category, counter_cache: true
