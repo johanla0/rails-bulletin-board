@@ -1,5 +1,5 @@
 div id="#{dom_id(bulletin, :buttons)}"
-  - if user_signed_in?
+  - if signed_in?
     .btn-group role='group' aria-label='Action buttons'
       = link_to_bulletin_action bulletin, :to_moderate, class: 'btn btn-sm btn-primary' if bulletin.may_to_moderate? && !bulletin.published?
       = link_to_bulletin_action bulletin, :publish, class: 'btn btn-sm btn-primary' if bulletin.may_publish?

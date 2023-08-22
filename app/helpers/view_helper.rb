@@ -20,9 +20,8 @@ module ViewHelper
     'active' if without_query_params_path == request.path
   end
 
-  def menu_item(name = nil, path = '#', *args)
-    args_options = args.extract_options!
-    options = { class: "nav-link mb-0 #{active?(path)}" }.merge args_options
+  def menu_item(name = nil, path = '#')
+    options = { class: "nav-link mb-0 #{active?(path)}" }
     tag.li(class: 'nav-item me-3') do
       link_to name, path, options
     end

@@ -15,7 +15,8 @@
           div
             h2.mb-3
               = @bulletin.title
-              span.badge.bg-info.ms-2 = @bulletin.state.humanize
+              - unless @bulletin.published?
+                span.badge.bg-info.ms-2 = @bulletin.state.humanize
             = render partial: 'web/admin/bulletins/shared/action_buttons', locals: { bulletin: @bulletin }
           hr
           div data-controller='lightbox' data-lightbox-options-value='{"download": false, "share": false}'
@@ -31,6 +32,6 @@
                 = @bulletin.user.name
                 .small = @bulletin.user.email
 
-  - if user_signed_in?
+  - if signed_in?
     div
       = link_to t('edit'), edit_bulletin_path(@bulletin) if policy(@bulletin).edit?
