@@ -6,6 +6,4 @@ class CategoryPresenter < SimpleDelegator
 
     name
   end
-
-  delegate :count, to: :bulletins, prefix: true
 end
