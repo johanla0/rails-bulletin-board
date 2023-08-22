@@ -32,6 +32,6 @@
                 = @bulletin.user.name
                 .small = @bulletin.user.email
 
-  - if user_signed_in?
+  - if signed_in?
     div
       = link_to t('edit'), edit_bulletin_path(@bulletin) if policy(@bulletin).edit?
