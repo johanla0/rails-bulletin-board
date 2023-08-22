@@ -4,11 +4,9 @@ class Web::BulletinsController < Web::ApplicationController
   def index
     authorize(Bulletin)
 
-    @q = if user_signed_in? && current_user.admin?
-           Bulletin.ransack(params[:q])
-         else
-           Bulletin.published.ransack(params[:q])
-         end
+    scope = current_user&.admin? ? Bulletin : Bulletin.published
+    @q = scope.ransack(params[:q])
+
     @q.sorts = 'updated_at asc' if @q.sorts.empty?
     @bulletins = @q.result(distinct: true).page(params[:page])
   end
