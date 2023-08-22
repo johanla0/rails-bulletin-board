@@ -15,7 +15,8 @@
           div
             h2.mb-3
               = @bulletin.title
-              span.badge.bg-info.ms-2 = @bulletin.state.humanize
+              - unless @bulletin.published?
+                span.badge.bg-info.ms-2 = @bulletin.state.humanize
             = render partial: 'web/admin/bulletins/shared/action_buttons', locals: { bulletin: @bulletin }
           hr
           div data-controller='lightbox' data-lightbox-options-value='{"download": false, "share": false}'
