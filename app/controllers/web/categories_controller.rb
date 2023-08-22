@@ -5,11 +5,9 @@ class Web::CategoriesController < Web::ApplicationController
     @category = Category.find(params[:id]).decorate
     authorize @category
 
-    @q = if user_signed_in? && current_user.admin?
-           @category.bulletins.ransack(params[:q])
-         else
-           @category.bulletins.published.ransack(params[:q])
-         end
+    scope = current_user&.admin? ? @category.bulletins : @category.bulletins.published
+    @q = scope.ransack(params[:q])
+
     @q.sorts = 'updated_at asc' if @q.sorts.empty?
     @bulletins = @q.result(distinct: true).page(params[:page])
   end

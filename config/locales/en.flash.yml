@@ -28,6 +28,7 @@ en:
             success: Bulletin has been sent to review
       auth:
         callback:
+          error: Something went wrong
           success: Signed in successfully
         destroy:
           success: Signed out successfully
