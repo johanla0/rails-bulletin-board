@@ -22,7 +22,7 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def edit?
-    update?
+    (update? && user_is_owner?) || user&.admin?
   end
 
   def to_moderate?
