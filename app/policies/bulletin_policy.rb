@@ -9,16 +9,8 @@ class BulletinPolicy < ApplicationPolicy
     show_all? || user_is_owner? || record.published?
   end
 
-  def create?
-    user.present?
-  end
-
-  def new?
-    create?
-  end
-
   def update?
-    user.present?
+    (user.present? && user_is_owner?) || user.admin?
   end
 
   def edit?
@@ -26,11 +18,11 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def to_moderate?
-    update? && user_is_owner?
+    update?
   end
 
   def archive?
-    update? && user_is_owner?
+    update?
   end
 
   def publish?
@@ -41,12 +33,8 @@ class BulletinPolicy < ApplicationPolicy
     false
   end
 
-  def may_perform_moderator_actions?
-    update? && user.admin?
-  end
-
   def show_all?
-    user.present? && user.admin?
+    user&.admin?
   end
 
   private

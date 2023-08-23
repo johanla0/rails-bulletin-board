@@ -33,7 +33,7 @@ module ViewHelper
     options = { data: { turbo_method: :patch } }.merge args_options
 
     if current_user.admin?
-      return '' unless policy([:admin, bulletin]).send("#{action}?")
+      return '' unless policy([:admin, current_user]).send("#{action}?")
 
       path = polymorphic_path([action, :admin, bulletin])
     else
