@@ -2,8 +2,6 @@
 
 class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   def index
-    authorize(Bulletin)
-
     @q = Bulletin.ransack(params[:q])
     @q.sorts = 'title asc' if @q.sorts.empty?
     @bulletins = @q.result(distinct: true).page(params[:page])
@@ -11,8 +9,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
 
   def archive
     bulletin = Bulletin.find(params[:id])
-    authorize(bulletin)
-
     bulletin.archive
 
     if bulletin.valid?
@@ -38,8 +34,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
 
   def publish
     bulletin = Bulletin.find(params[:id])
-    authorize(bulletin)
-
     bulletin.publish
 
     if bulletin.valid?
@@ -65,8 +59,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
 
   def reject
     bulletin = Bulletin.find(params[:id])
-    authorize(bulletin)
-
     bulletin.reject
 
     if bulletin.valid?
@@ -92,8 +84,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
 
   def to_moderate
     bulletin = Bulletin.find(params[:id])
-    authorize(bulletin)
-
     bulletin.to_moderate
 
     if bulletin.valid?
