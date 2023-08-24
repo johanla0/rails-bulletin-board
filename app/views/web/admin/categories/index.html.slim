@@ -1,5 +1,5 @@
 h1.mb-4 = t('manage')
-= render layout: 'web/admin/layout' do
+= render layout: 'web/admin/shared/layout' do
   = search_form_for @q, url: admin_categories_path, html: { class: 'row g-2 my-3' } do |f|
     .col-auto
       = f.search_field :name_cont, \

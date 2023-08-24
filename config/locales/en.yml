@@ -81,9 +81,10 @@ en:
           editing_category: Editing category
         new:
           new_category: New category
-      layout:
-        add_category: Add category
-        all_bulletins: All bulletins
+      shared:
+        layout:
+          add_category: Add category
+          all_bulletins: All bulletins
     bulletins:
       edit:
         editing_bulletin: Editing bulletin
