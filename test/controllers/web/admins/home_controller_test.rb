@@ -7,12 +7,12 @@ class AdminsControllerTest < ActionDispatch::IntegrationTest
     user = users(:admin)
     sign_in user
 
-    get admin_bulletins_path
+    get admin_admins_path
     assert_response :success
   end
 
   test '#index unauthorized' do
-    get admin_bulletins_path
+    get admin_admins_path
     assert_response :redirect
   end
 end
