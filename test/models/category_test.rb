@@ -15,10 +15,7 @@ require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
   test 'valid category' do
-    category = Category.create(
-      slug: :new,
-      name: 'New'
-    )
+    category = categories(:one)
 
     assert { category.valid? }
   end

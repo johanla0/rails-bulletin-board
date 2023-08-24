@@ -8,52 +8,27 @@ second_image_attachment:
   record: two (Bulletin)
   blob: second_image_blob
 
-third_image_attachment:
-  name: image
-  record: three (Bulletin)
-  blob: third_image_blob
-
 draft_attachment:
   name: image
   record: draft (Bulletin)
-  blob: second_image_blob
+  blob: <%= %w[first_image_blob second_image_blob].sample %>
 
 under_moderation_attachment:
   name: image
   record: under_moderation (Bulletin)
-  blob: second_image_blob
-
-<% 1.upto(3) do |i| %>
-draft_<%= i %>_attachment:
-  name: image
-  record: draft_<%= i %> (Bulletin)
   blob: <%= %w[first_image_blob second_image_blob].sample %>
-<% end %>
 
-<% 1.upto(3) do |i| %>
-under_moderation_<%= i %>_attachment:
+published_attachment:
   name: image
-  record: under_moderation_<%= i %> (Bulletin)
+  record: published (Bulletin)
   blob: <%= %w[first_image_blob second_image_blob].sample %>
-<% end %>
 
-<% 1.upto(3) do |i| %>
-published_<%= i %>_attachment:
+rejected_attachment:
   name: image
-  record: published_<%= i %> (Bulletin)
+  record: rejected (Bulletin)
   blob: <%= %w[first_image_blob second_image_blob].sample %>
-<% end %>
 
-<% 1.upto(3) do |i| %>
-rejected_<%= i %>_attachment:
+archived_attachment:
   name: image
-  record: rejected_<%= i %> (Bulletin)
+  record: archived (Bulletin)
   blob: <%= %w[first_image_blob second_image_blob].sample %>
-<% end %>
-
-<% 1.upto(3) do |i| %>
-archived_<%= i %>_attachment:
-  name: image
-  record: archived_<%= i %> (Bulletin)
-  blob: <%= %w[first_image_blob second_image_blob].sample %>
-<% end %>
