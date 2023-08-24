@@ -55,42 +55,20 @@ under_moderation:
   state: :under_moderation
   category: two
 
-<% 1.upto(3) do |i| %>
-draft_<%= i %>:
+published:
   <<: *DEFAULTS
-  title: <%= Faker::Book.title %>
-  description: <%= Faker::Lorem.paragraph %>
-  state: draft
-<% end %>
-
-<% 1.upto(3) do |i| %>
-under_moderation_<%= i %>:
-  <<: *DEFAULTS
-  title: <%= Faker::Book.title %>
-  description: <%= Faker::Lorem.paragraph %>
-  state: under_moderation
-<% end %>
-
-<% 1.upto(3) do |i| %>
-published_<%= i %>:
-  <<: *DEFAULTS
-  title: <%= Faker::Book.title %>
-  description: <%= Faker::Lorem.paragraph %>
+  title: Bulletin published title
+  description: Bulletin published title
   state: published
-<% end %>
 
-<% 1.upto(3) do |i| %>
-rejected_<%= i %>:
+rejected:
   <<: *DEFAULTS
-  title: <%= Faker::Book.title %>
-  description: <%= Faker::Lorem.paragraph %>
+  title: Bulletin rejected title
+  description: Bulletin rejected title
   state: rejected
-<% end %>
 
-<% 1.upto(3) do |i| %>
-archived_<%= i %>:
+archived:
   <<: *DEFAULTS
-  title: <%= Faker::Book.title %>
+  title: Bulletin archived title
   description: <%= Faker::Lorem.paragraph %>
   state: archived
-<% end %>
