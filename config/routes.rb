@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'categories/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'web/bulletins#index'
 
@@ -10,7 +9,7 @@ Rails.application.routes.draw do
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
     delete 'auth/logout', to: 'auth#destroy'
 
-    get :profile, to: 'users#show'
+    resource :profile, only: :show, controller: :users
 
     resources :bulletins, only: %i[index new create edit update show] do
       member do
@@ -21,8 +20,8 @@ Rails.application.routes.draw do
 
     resources :categories, only: :show
 
-    get :admin, to: 'admin#index'
     namespace :admin do
+      resources :admins, path: '', only: :index, controller: :home
       resources :bulletins, only: :index do
         member do
           patch :archive
