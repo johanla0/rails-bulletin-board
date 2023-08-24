@@ -8,7 +8,7 @@ class Web::BulletinsController < Web::ApplicationController
     @q = scope.ransack(params[:q])
 
     @q.sorts = 'updated_at asc' if @q.sorts.empty?
-    @bulletins = @q.result(distinct: true).page(params[:page])
+    @bulletins = @q.result(distinct: true).page(params[:page]).includes(image_attachment: :blob)
   end
 
   def show
