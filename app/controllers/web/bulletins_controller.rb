@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Web::BulletinsController < Web::ApplicationController
-  def index
-    authorize(Bulletin)
+  before_action :authenticate_user, except: %i[index show]
 
+  def index
     scope = current_user&.admin? ? Bulletin : Bulletin.published
     @q = scope.ransack(params[:q])
 

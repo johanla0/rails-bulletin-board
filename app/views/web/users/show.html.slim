@@ -3,18 +3,18 @@ nav aria-label='breadcrumb'
     li.breadcrumb-item
       = link_to t('all_bulletins'), root_path
     li.breadcrumb-item.active aria-current='page'
-      = t('.users_bulletins', name: current_user.name)
+      = t('.users_bulletins', name: @user.name)
 
-div id="#{dom_id(current_user)}"
+div id="#{dom_id(@user)}"
   .row.gutters-sm
     .col-md-4
       .card.p-4
         .d-flex.flex-column.align-items-center.text-center
-          = avatar_for current_user
-          h2 = current_user.name
-          p.small = current_user.email
+          = avatar_for @user
+          h2 = @user.name
+          p.small = @user.email
           p.small.mb-0.text-warning.fw-bold
-            = t('admin') if current_user.admin
+            = t('admin') if @user.admin
     .col-md-8
       = search_form_for @q, url: profile_path, html: { class: 'row g-2 mb-3' } do |f|
         .col-auto
