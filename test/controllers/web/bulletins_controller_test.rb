@@ -9,7 +9,14 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @user = users(:john)
   end
 
-  test '#index' do
+  test '#index unauthorized' do
+    get root_path
+    assert_response :success
+  end
+
+  test '#index authorized' do
+    sign_in @user
+
     get root_path
     assert_response :success
   end
