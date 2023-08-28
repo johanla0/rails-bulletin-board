@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Web::ApplicationController < ApplicationController
-  protect_from_forgery
-
+  include AuthHelper
   include Flash
   include Pundit::Authorization
 

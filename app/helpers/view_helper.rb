@@ -31,17 +31,7 @@ module ViewHelper
     name = I18n.t(action, scope: 'bulletins.actions')
     args_options = args.extract_options!
     options = { data: { turbo_method: :patch } }.merge args_options
-
-    if current_user.admin?
-      return '' unless policy([:admin, current_user]).send("#{action}?")
-
-      path = polymorphic_path([action, :admin, bulletin])
-    else
-      return '' unless policy(bulletin).send("#{action}?")
-
-      path = polymorphic_path([action, bulletin])
-    end
-
+    path = current_user.admin? ? polymorphic_path([action, :admin, bulletin]) : polymorphic_path([action, bulletin])
     link_to name, path, options
   end
 end

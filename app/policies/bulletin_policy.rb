@@ -1,20 +1,12 @@
 # frozen_string_literal: true
 
 class BulletinPolicy < ApplicationPolicy
-  def index?
-    true
-  end
-
   def show?
-    show_all? || user_is_owner? || record.published?
+    record.published? || user_is_owner? || show_all?
   end
 
   def update?
-    (user.present? && user_is_owner?) || user.admin?
-  end
-
-  def edit?
-    update?
+    user_is_owner? || user.admin?
   end
 
   def to_moderate?
@@ -23,14 +15,6 @@ class BulletinPolicy < ApplicationPolicy
 
   def archive?
     update?
-  end
-
-  def publish?
-    false
-  end
-
-  def reject?
-    false
   end
 
   def show_all?

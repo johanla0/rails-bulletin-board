@@ -12,7 +12,7 @@ hr
       options_for_select(all_categories.map { |c| [c.title, c.id] }, @q.category_id_eq), \
       { include_blank: t('simple_form.placeholders.defaults.category') }, \
       { class: 'form-select' }
-  - if policy(Bulletin).show_all?
+  - if current_user.present? && policy(Bulletin).show_all?
     .col-auto
       = f.select :state_eq, \
         options_for_select(Bulletin.aasm.states.map { |s| [t(s.name, scope: 'states'), s.name] }, @q.state_eq), \
