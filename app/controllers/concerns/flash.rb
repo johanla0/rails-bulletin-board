@@ -5,11 +5,9 @@ module Flash
   # rubocop:disable Metrics/PerceivedComplexity
   def f(key, options = {})
     scope = :flash
-    controller = self.class
     errors = options[:errors]
     redirect_path = options[:redirect]
-    keys = build_path(key, controller, params[:action])
-    msg = I18n.t(keys.shift, scope:, default: keys, errors:)
+    msg = t(".#{key}", scope:, default: key, errors:)
     status = options[:status].presence || :ok
 
     # NOTE: color logging
@@ -38,26 +36,4 @@ module Flash
   end
   # rubocop:enable Metrics/CyclomaticComplexity
   # rubocop:enable Metrics/PerceivedComplexity
-
-  private
-
-  def build_path(type, controller, action)
-    keys = []
-    lookup_controller = controller
-    lookup_action = action
-
-    while lookup_controller.superclass.name != 'ActionController::Base'
-      lookup_key = []
-      lookup_key << lookup_controller.controller_path.tr('/', '.')
-      lookup_key << lookup_action
-      lookup_key << type
-
-      keys << lookup_key.join('.').to_sym
-
-      lookup_controller = lookup_controller.superclass
-      lookup_action = :base
-    end
-
-    keys
-  end
 end
