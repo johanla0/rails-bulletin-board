@@ -32,20 +32,6 @@ class BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert { bulletin.archived? }
   end
 
-  test '#to_moderate as admin successful' do
-    sign_in @user
-
-    bulletin = bulletins(:draft)
-
-    patch to_moderate_admin_bulletin_path(bulletin)
-
-    assert_response :redirect
-
-    bulletin.reload
-
-    assert { bulletin.under_moderation? }
-  end
-
   test '#publish as admin successful' do
     sign_in @user
 

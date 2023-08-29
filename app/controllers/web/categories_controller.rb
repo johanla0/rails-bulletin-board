@@ -8,6 +8,6 @@ class Web::CategoriesController < Web::ApplicationController
     @q = scope.ransack(params[:q])
 
     @q.sorts = 'updated_at asc' if @q.sorts.empty?
-    @bulletins = @q.result(distinct: true).page(params[:page]).includes(image_attachment: :blob)
+    @bulletins = @q.result(distinct: true).page(params[:page]).includes(:user, image_attachment: :blob)
   end
 end

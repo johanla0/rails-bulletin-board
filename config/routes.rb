@@ -26,7 +26,6 @@ Rails.application.routes.draw do
         member do
           patch :archive
           patch :publish
-          patch :to_moderate
           patch :reject
         end
       end
