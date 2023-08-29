@@ -7,4 +7,7 @@
         h5.card-title = link_to bulletin.title, bulletin
         p.card-subtitle = bulletin.description.truncate(100)
       .col-4.align-self-center
-        = render partial: 'web/admin/bulletins/shared/action_buttons', locals: { bulletin: }
+        - if current_user.admin?
+          = render partial: 'web/admin/bulletins/shared/action_buttons', locals: { bulletin: }
+        - else
+          = render partial: 'web/bulletins/shared/action_buttons', locals: { bulletin: }

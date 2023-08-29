@@ -17,7 +17,10 @@
               = @bulletin.title
               - unless @bulletin.published?
                 span.badge.bg-info.ms-2 = @bulletin.state.humanize
-            = render partial: 'web/admin/bulletins/shared/action_buttons', locals: { bulletin: @bulletin }
+            - if current_user.admin?
+              = render partial: 'web/admin/bulletins/shared/action_buttons', locals: { bulletin: @bulletin }
+            - else
+              = render partial: 'web/bulletins/shared/action_buttons', locals: { bulletin: @bulletin }
           hr
           div data-controller='lightbox' data-lightbox-options-value='{"download": false, "share": false}'
             = link_to @bulletin.image do

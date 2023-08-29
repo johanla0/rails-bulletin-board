@@ -73,8 +73,13 @@ class Web::BulletinsController < Web::ApplicationController
       f :success,
         turbo_stream: [
           turbo_stream.replace(
-            helpers.dom_id(bulletin, :buttons),
+            helpers.dom_id(bulletin, :admin_buttons),
             partial: 'web/admin/bulletins/shared/action_buttons',
+            locals: { bulletin: }
+          ),
+          turbo_stream.replace(
+            helpers.dom_id(bulletin, :buttons),
+            partial: 'web/bulletins/shared/action_buttons',
             locals: { bulletin: }
           ),
           turbo_stream.replace(
@@ -100,8 +105,13 @@ class Web::BulletinsController < Web::ApplicationController
       f :success,
         turbo_stream: [
           turbo_stream.replace(
-            helpers.dom_id(bulletin, :buttons),
+            helpers.dom_id(bulletin, :admin_buttons),
             partial: 'web/admin/bulletins/shared/action_buttons',
+            locals: { bulletin: }
+          ),
+          turbo_stream.replace(
+            helpers.dom_id(bulletin, :buttons),
+            partial: 'web/bulletins/shared/action_buttons',
             locals: { bulletin: }
           ),
           turbo_stream.replace(

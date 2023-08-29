@@ -1,8 +1,15 @@
-div id="#{dom_id(bulletin, :buttons)}"
+div id="#{dom_id(bulletin, :admin_buttons)}"
   - if signed_in?
     .btn-group role='group' aria-label='Action buttons'
-      = link_to_bulletin_action bulletin, :to_moderate, class: 'btn btn-sm btn-primary' if bulletin.may_to_moderate? && !bulletin.published?
-      - if current_user.admin?
-        = link_to_bulletin_action bulletin, :publish, class: 'btn btn-sm btn-primary' if bulletin.may_publish?
-        = link_to_bulletin_action bulletin, :reject, class: 'btn btn-sm btn-warning' if bulletin.may_reject?
-      = link_to_bulletin_action bulletin, :archive, class: 'btn btn-sm btn-danger' if bulletin.may_archive?
+      - if bulletin.may_to_moderate? && !bulletin.published?
+        = link_to to_moderate_admin_bulletin_path(bulletin), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch } do
+          = t('to_moderate', scope: 'bulletins.actions')
+      - if bulletin.may_publish?
+        = link_to publish_admin_bulletin_path(bulletin), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch } do
+          = t('publish', scope: 'bulletins.actions')
+      - if bulletin.may_reject?
+        = link_to reject_admin_bulletin_path(bulletin), class: 'btn btn-sm btn-warning', data: { turbo_method: :patch } do
+          = t('reject', scope: 'bulletins.actions')
+      - if bulletin.may_archive?
+        = link_to archive_admin_bulletin_path(bulletin), class: 'btn btn-sm btn-danger', data: { turbo_method: :patch, turbo_confirm: t('archive_confirmation') } do
+          = t('archive', scope: 'bulletins.actions')

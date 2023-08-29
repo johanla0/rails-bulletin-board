@@ -33,6 +33,7 @@ en:
   admin: Admin
   all_bulletins: All bulletins
   all_categories: All categories
+  archive_confirmation: Are you sure?
   bulletin_board: Bulletin board © %{year}
   bulletins:
     actions:
