@@ -1,9 +1,6 @@
 div id="#{dom_id(bulletin, :admin_buttons)}"
   - if signed_in?
     .btn-group role='group' aria-label='Action buttons'
-      - if bulletin.user == current_user && bulletin.may_to_moderate? && !bulletin.published?
-        = link_to to_moderate_bulletin_path(bulletin), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch } do
-          = t('to_moderate', scope: 'bulletins.actions')
       - if bulletin.may_publish?
         = link_to publish_admin_bulletin_path(bulletin), class: 'btn btn-sm btn-primary', data: { turbo_method: :patch } do
           = t('publish', scope: 'bulletins.actions')

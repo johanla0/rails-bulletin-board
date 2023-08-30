@@ -4,7 +4,7 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   def index
     @q = Bulletin.ransack(params[:q])
     @q.sorts = 'title asc' if @q.sorts.empty?
-    @bulletins = @q.result(distinct: true).includes(:user).page(params[:page])
+    @bulletins = @q.result(distinct: true).page(params[:page])
   end
 
   def archive
@@ -22,13 +22,8 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
             locals: { bulletin: }
           ),
           turbo_stream.replace(
-            helpers.dom_id(bulletin, :buttons),
-            partial: 'web/bulletins/shared/action_buttons',
-            locals: { bulletin: }
-          ),
-          turbo_stream.replace(
             helpers.dom_id(bulletin, :state),
-            partial: 'web/admin/bulletins/state',
+            partial: 'web/bulletins/shared/state',
             locals: { bulletin: }
           )
         ], status: :see_other
@@ -52,13 +47,8 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
             locals: { bulletin: }
           ),
           turbo_stream.replace(
-            helpers.dom_id(bulletin, :buttons),
-            partial: 'web/bulletins/shared/action_buttons',
-            locals: { bulletin: }
-          ),
-          turbo_stream.replace(
             helpers.dom_id(bulletin, :state),
-            partial: 'web/admin/bulletins/state',
+            partial: 'web/bulletins/shared/state',
             locals: { bulletin: }
           )
         ], status: :see_other
@@ -82,13 +72,8 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
             locals: { bulletin: }
           ),
           turbo_stream.replace(
-            helpers.dom_id(bulletin, :buttons),
-            partial: 'web/bulletins/shared/action_buttons',
-            locals: { bulletin: }
-          ),
-          turbo_stream.replace(
             helpers.dom_id(bulletin, :state),
-            partial: 'web/admin/bulletins/state',
+            partial: 'web/bulletins/shared/state',
             locals: { bulletin: }
           )
         ], status: :see_other
