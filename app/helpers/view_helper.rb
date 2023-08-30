@@ -26,12 +26,4 @@ module ViewHelper
       link_to name, path, options
     end
   end
-
-  def link_to_bulletin_action(bulletin, action, *args)
-    name = I18n.t(action, scope: 'bulletins.actions')
-    args_options = args.extract_options!
-    options = { data: { turbo_method: :patch } }.merge args_options
-    path = current_user.admin? ? polymorphic_path([action, :admin, bulletin]) : polymorphic_path([action, bulletin])
-    link_to name, path, options
-  end
 end
