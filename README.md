@@ -8,7 +8,7 @@ Just a simple bulletin blog example with a pinch of Hotwire. Everybody can read 
 - `admin` can review and manage categories and bulletins' states within a separate namespace
 
 ## App can be found here
-https://rails-project-65.onrender.com/
+TBU (moving from PaaS to VPS)
 
 ## Development
 ### Install locally (no docker containers currently)
